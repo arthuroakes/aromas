@@ -6,4 +6,4 @@ pillow
 bcrypt
 sendgrid
 python-dotenv
-htmlmin
+htmlmin 
