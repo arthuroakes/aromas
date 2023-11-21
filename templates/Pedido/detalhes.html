@@ -14,7 +14,6 @@
             <th style="background-color: #4D2B1E; text-align: center;">Nome</th>
             <th style="background-color: #4D2B1E; text-align: center;">Qtde</th>
             <th style="background-color: #4D2B1E; text-align: center;">Preço Unit.</th>
-            <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
           </tr>
       </thead>
       <tbody>
@@ -32,16 +31,11 @@
               </a>
             </td>
             <td class="table-warning" align="center">{{item.valorUnitario}}</td>
-            <td class="table-warning" align="center">
-              <a href="/pedido/excluiritem/{{item.idProduto}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
-                <i class="bi bi-trash-fill"></i>
-              </a>
-            </td>
           </tr>
       {% endfor %}
       </tbody>
       </table>
-        <a href="/pedido/porcliente" class="btn" style="color: #EDE0D4; background-color: #4D2B1E" title="Comprar mais" data-bs-toggle="tooltip" data-bs-placement="left">
+        <a href="/pedido/porcliente" class="btn" style="color: #EDE0D4; background-color: #4D2B1E" title="Pedidos Realizados" data-bs-toggle="tooltip" data-bs-placement="left">
           <i class="bi bi-arrow-left"></i> Voltar para Pedidos Realizados
         </a>        
   {% else %}
