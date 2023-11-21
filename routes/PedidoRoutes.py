@@ -321,11 +321,14 @@ async def acompanhar_pedido(
 async def pedido_andamento(
     request: Request, id_pedido: int = Path(), usuario: Usuario = Depends(validar_usuario_logado)
 ):
+    qtdeItensCarrinho = 0
+    if usuario and usuario.cliente:
+        qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
     pedido = PedidoRepo.obterPedidoPorId(id_pedido)
     itens = ItemRepo.getAllByPedido(pedido.idPedido)
     return templates.TemplateResponse(
         "Pedido/detalhes.html",
-        {"request": request, "usuario": usuario, "pedido": pedido, "itens": itens},	
+        {"request": request, "usuario": usuario, "pedido": pedido, "itens": itens, "qtdeItensCarrinho": qtdeItensCarrinho},	
     )
 
 
