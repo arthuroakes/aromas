@@ -307,10 +307,13 @@ async def sobrenos(
 async def acompanhar_pedido(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado)
 ):
+    qtdeItensCarrinho = 0
+    if usuario and usuario.cliente:
+        qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
     pedidos = PedidoRepo.getPedidosByCliente(usuario.idUsuario)    
     return templates.TemplateResponse(
         "Pedido/pedidosCliente.html",
-        {"request": request, "usuario": usuario, "pedidos": pedidos, "totalPaginas": 1, "paginaAtual": 1},
+        {"request": request, "usuario": usuario, "pedidos": pedidos, "qtdeItensCarrinho": qtdeItensCarrinho, "totalPaginas": 1, "paginaAtual": 1},
     )
     
     
