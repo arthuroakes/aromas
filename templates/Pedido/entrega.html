@@ -1,0 +1,31 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<div class="header">
+    <h3 class="w-100 text-center">Escolha o Endereço</h3>
+</div>
+<hr class="my-5">
+<div class="row">
+    {% if enderecos|length == 0 %}
+    <a href="/endereco/novoendereco" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Adicionar um endereço</a>
+    {% else %}
+    {% for e in enderecos: %}
+    <div class="col-4">
+        <div class="card" style="width: 100%; background-color: #EDE0D4; color: #4D2B1E;">
+            <div class="card-body">
+                <form method="post">
+                    <input type="hidden" name="idEndereco" value="{{e.idEndereco}}">
+                    <p class="card-text">
+                        {{ e.rua }}, {{ e.numero }}, {{ e.bairro }}<br>
+                        {{ e.cidade }} - {{ e.uf }}<br>
+                        {{ e.cep }}
+                    </p>
+                    <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Este Endereço</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Dados Pessoais</h1>
+<hr>
+
+<div class="row">
+    <div class="col-sm-8 col-lg-9">
+        <p>Nome Completo: {{ funcionario.nome }}</p> 
+        <p>E-mail: {{ funcionario.email }}</p>
+        <p>CPF: {{ funcionario.cpf }}</p>
+        <p>Telefone: {{ funcionario.telefone }}</p> 
+    </div>
+    <div class="col-sm-4 col-lg-3">
+        <img src="/static/img/funcionarios/{{ usuario.idUsuario|id_img }}.jpg" class="img-thumbnail" /> 
+        <a href="/funcionario/trocarfoto/{{ funcionario.idUsuario }}" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; margin-top: 10px;"> <i class="bi bi-image-fill"></i> Trocar Foto </a>
+    </div>
+</div>
+
+<hr>
+<a href="/funcionario/modificarfuncionario/{{ funcionario.idUsuario }}" class="btn me-3" style="background-color: #4D2B1E; color: #EDE0D4;"> Editar Dados</a>
+<a href="/alterarsenha" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Alterar Senha</a>
+{% endblock %}

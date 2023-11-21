@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:Aromas-4o-bimestre-2023-11-14}/dados.db",
+            "name": "Aromas"
+        }
+    ]
+}

@@ -1,0 +1,121 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Novo Funcionário</h1>
+<hr>
+<p class="lead">
+</p>
+<form method="post" enctype="multipart/form-data">
+  
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo, sem abreviações" autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="nome" style="color: #EDE0D4;">Nome Completo</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" placeholder="Digite sua data de nascimento" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="dataNascimento" style="color: #EDE0D4;">Data de Nascimento</label>
+        <span class="text-danger d-none small"></span>
+    </div>  
+  
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="cpf" style="color: #EDE0D4;">CPF</label>
+        <span class="text-danger d-none small"></span>
+    </div>  
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="telefone" style="color: #EDE0D4;">Telefone</label>
+        <span class="text-danger d-none small"></span>
+    </div>   
+
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="email" style="color: #EDE0D4;">E-mail</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dataAdmissao" name="dataAdmissao" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="dataAdmissao" style="color: #EDE0D4;">Data de Admissão</label>
+        <span class="text-danger d-none small"></span>
+    </div>  
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="salario" name="salario" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="salario" style="color: #EDE0D4;">Salário</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="senha" style="color: #EDE0D4;">Senha</label>
+        <span class="text-danger d-none small"></span>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" onclick="showPassword('senha')" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault"><i class="bi bi-eye-fill"></i></label>
+        </div>
+    </div>
+  
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="confSenha" name="confSenha" placeholder="Confirme sua senha" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="confSenha" style="color: #EDE0D4;">Confirmação de Senha</label>
+        <span class="text-danger d-none small"></span>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" onclick="showPassword('confSenha')" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault"><i class="bi bi-eye-fill"></i></label>
+        </div>
+    </div>
+  
+    <!-- CAMPO DA IMAGEM -->
+    <div class="col-12 mb-3">
+        <label for="arquivoImagem" class="form-label" style="color: #EDE0D4;">Selecione o Arquivo de Imagem</label>
+        <input class="form-control" type="file" id="arquivoImagem" name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <span class="text-danger d-none small"></span>
+    </div>
+    <!-- --------------- -->
+    <div class="mb-3">
+        <a href="/funcionario/listagemfuncionarios" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Salvar</button>
+    </div>
+</form>
+
+<!-- LOCAL PARA MOSTRAR IMAGEM SELECIONADA -->
+<div class="col-3">
+    <img id="preview" src="" class="border border-2 rounded rounded-3 p-2 w-100 d-none" />
+</div>
+<!-- ------------------------------------- -->
+<!-- SCRIPT PARA MOSTRAR IMAGEM SELECIONADA -->
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var preview = document.getElementById('preview');
+            preview.src = reader.result;
+            preview.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+<!-- -------------------------------------- -->
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script> 
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+
+<script>
+    function showPassword(id) {
+        var x = document.getElementById(id);
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+{% endblock %}

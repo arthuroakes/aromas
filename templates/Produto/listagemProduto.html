@@ -1,0 +1,73 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Produtos Cadastrados</h1>
+    <a href="/produto/novoproduto" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Novo Produto</a> 
+</div>
+<hr>
+{% if produtos|length == 0 %}
+<p>Não há produtos cadastrados.</p>
+{% else %}
+<table class="table table-dark" style="border: 5px solid black;"> 
+    <thead>
+        <tr>
+            <th style="background-color: #4D2B1E; text-align: center;">ID da Categoria</th>            
+            <th style="background-color: #4D2B1E; text-align: center;">Nome</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Preço</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Quantidade em Estoque</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Em Promoção</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Data Lançamento</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in produtos %}
+        <tr data-id="{{ p.idProduto }}">
+            <td class="table-warning" align="center">{{ p.idCategoria }}</td>
+            <td class="table-warning" align="center">{{ p.nome }}</td>
+            <td class="table-warning" align="center">{{ p.preco }}</td>
+            <td class="table-warning" align="center">{{ p.qtdEstoque }}</td>
+            <td class="table-warning" align="center">{{ p.emPromocao }}</td>
+            <td class="table-warning" align="center">{{ p.dataLancamento }}</td>
+            <td class="table-warning" align="center">
+                <a href="/produto/excluirproduto/{{ p.idProduto }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-trash-fill"></i> 
+                </a>
+            </td>
+            <td class="table-warning">
+                <!-- Botão para editar produto -->
+                <a href="/produto/modificarproduto/{{ p.idProduto }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+            </td>
+        </tr>    
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if totalPaginas > 1 %}
+<nav>
+    <ul class="pagination pagination-sm">
+      <!-- <li class="page-item {{ 'active' if paginaAtual == 1 }}" aria-current="page">
+        <a class="page-link" href="/Produto/listagemProduto?pa=1&tp={{ tamanhoPagina }}">1</a>
+      </li> -->
+      {% for i in range(1, totalPaginas + 1) %}
+      <li class="page-item">
+        <a class="page-link" style="background-color: #4D2B1E; color: #EDE0D4;" href="/produto/listagemprodutos?pa={{ i }}&tp={{ tamanhoPagina }}">{{ i }}</a>
+      </li>
+      {% endfor %}
+      <!-- <li class="page-item {{ 'active' if paginaAtual == totalPaginas }}" aria-current="page">
+        <a class="page-link" href="/Produto/listagemProduto?pa=totalPaginas&tp={{ tamanhoPagina }}">{{totalPaginas}}</a>
+      </li> -->
+    </ul>
+</nav>
+{% endif %}
+
+{% endblock %}
+
+{% block script %}
+<!-- <script src="/static/js/ativarTooltips.js"></script> -->
+{% endblock %} 

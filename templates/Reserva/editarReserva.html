@@ -1,0 +1,67 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Editar Reserva</h1>
+<hr>
+<p class="lead">
+    Preencha corretamente os campos abaixo para editar a reserva. 
+</p>
+<form method="post">
+
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dataReserva" name="dataReserva" value="{{ reserva.dataReserva }}" placeholder="Escolha a data." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="dataReserva" style="color: #EDE0D4;">Escolha a Data da Reserva</label>
+        <span class="text-danger d-none small"></span>
+    </div> 
+    
+    <div class="form-floating mb-3">
+        <select class="form-control marrom_terroso_backgroud" id="horaReserva" name="horaReserva" value="{{ reserva.horaReserva }}" style="background-color: #4D2B1E; color: #EDE0D4;">
+            <option value="" disabled selected>Escolha o Horário</option>
+            <option value="08:00">8:00 AM</option>
+            <option value="09:00">9:00 AM</option>
+            <option value="08:00">10:00 AM</option>
+            <option value="09:00">11:00 AM</option>
+            <option value="08:00">12:00 PM</option>
+            <option value="09:00">13:00 PM</option>
+            <option value="18:00">14:00 PM</option>
+            <option value="08:00">15:00 PM</option>
+            <option value="09:00">16:00 PM</option>
+            <option value="08:00">17:00 PM</option>
+            <option value="09:00">18:00 PM</option>
+          </select> 
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-control marrom_terroso_backgroud" id="qtdPessoas" name="qtdPessoas" value="{{ reserva.qtdPessoas }}" style="background-color: #4D2B1E; color: #EDE0D4;">
+            <option value="" disabled selected>Escolha a Quantidade de Pessoas</option>
+            <option value="1">1 pessoa</option>
+            <option value="2">2 pessoas</option>
+            <option value="3">3 pessoas</option>
+            <option value="4">4 pessoas</option>
+            <option value="5">5 pessoas</option>
+            <option value="6">6 pessoas</option>
+            <option value="7">7 pessoas</option>
+            <option value="8">8 pessoas</option>
+            <option value="9">9 pessoas</option>
+            <option value="10">10 pessoas</option>
+          </select>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" id="idMesa" name="idMesa" value="{{ reserva.idMesa }}" style="background-color: #4D2B1E; color: #EDE0D4;">
+            <option value="" disabled selected>Escolha uma Mesa</option>
+            {% for m in mesas: %} 
+            <option value="{{ m.idMesa }}">{{ m.numero }}</option>\ 
+            {% endfor %}
+        </select>
+        <label for="idMesa" style="color: #EDE0D4;">Escolha a Mesa</label> 
+        <span class="text-danger d-none small"></span>
+    </div>
+  
+    <div class="mb-3">
+        <a href="{% if usuario.funcionario %}/reserva/listagemreservas{% else %}/cliente/minhasreservas/{{ reserva.idCliente }}{% endif %}" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+    </div>
+</form>
+
+{% endblock %} 

@@ -1,0 +1,31 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+    <div class="header">
+        <h3>Acompanhe seu Pedido</h3>
+    </div>
+    <div class="delivery-info">
+        <h2>Motivo do cancelamento:</h2>
+        <label>
+            <input type="radio" name="motivo" value="forma-pagamento-errada"> Forma de pagamento errada
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="motivo" value="arrependimento-compra"> Se arrependeu da compra
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="motivo" value="esqueceu-algo"> Esqueceu de algo
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="motivo" value="outros"> Outros
+        </label>
+    </div>
+
+    <div class="button-container">
+        <center><a href="/pedido/cancelar" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Confirmar Cancelamento</a></center>
+    </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+{% endblock %}

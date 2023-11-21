@@ -1,0 +1,29 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Editar Mesa</h1>
+<hr>
+<p class="lead">
+    Preencha corretamente os campos abaixo para editar os dados da mesa.
+</p>
+<form method="post">
+    
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="numero" name="numero" value="{{ mesa.numero }}" placeholder="Digite o número correspondente à mesa." autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="numero" style="color: #EDE0D4;">Número da Mesa</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="assentos" name="assentos" value="{{ mesa.assentos }}" placeholder="Digite a quantidade de assentos que há na mesa." autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="assentos" style="color: #EDE0D4;">Quantidade de Assentos</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+  
+    <div class="mb-3">
+        <a href="/mesa/listagemmesas" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+    </div>
+</form>
+
+{% endblock %} 

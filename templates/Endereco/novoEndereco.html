@@ -1,0 +1,129 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Novo Endereço</h1>
+<hr>
+<form method="post">
+<div class="form-floating mb-3">
+    <select class="form-select" id="uf" name="uf" autofocus style="color: white; background-color: #4D2B1E;">
+        <option value="" selected disabled></option>
+        <!-- <option value="AC">AC</option>
+        <option value="AL">AL</option>
+        <option value="AP">AP</option>
+        <option value="AM">AM</option>
+        <option value="BA">BA</option>
+        <option value="CE">CE</option>
+        <option value="DF">DF</option>
+        <option value="GO">GO</option>
+        <option value="MA">MA</option>
+        <option value="MT">MT</option>
+        <option value="MS">MS</option>
+        <option value="MG">MG</option>
+        <option value="PA">PA</option>
+        <option value="PB">PB</option>
+        <option value="PR">PR</option>
+        <option value="PE">PE</option>
+        <option value="PI">PI</option>
+        <option value="RJ">RJ</option>
+        <option value="RN">RN</option>
+        <option value="RS">RS</option>
+        <option value="RO">RO</option>
+        <option value="RR">RR</option>
+        <option value="SC">SC</option>
+        <option value="SP">SP</option>
+        <option value="SE">SE</option>
+        <option value="TO">TO</option> --> 
+        <option value="ES">ES</option>
+    </select>
+    <label for="uf" style="color: #EDE0D4;">UF</label>
+    <span class="text-danger d-none small"></span>
+</div>
+  
+    <div class="form-floating mb-3">
+        <select class="form-select" id="cidade" name="cidade" style="color: white; background-color: #4D2B1E;">
+            <!-- Opções de cidades aqui -->
+        </select>
+        <label for="cidade" style="color: #EDE0D4;">Cidade</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o nome do seu bairro" autofocus style="color: white; background-color: #4D2B1E;">
+        <label for="bairro" style="color: #EDE0D4;">Bairro</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="rua" name="rua" placeholder="Digite o nome da sua rua" autofocus style="color: white; background-color: #4D2B1E;">
+        <label for="rua" style="color: #EDE0D4;">Rua</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="numero" name="numero" placeholder="Digite o número da sua casa" autofocus style="color: white; background-color: #4D2B1E;">
+      <label for="numero" style="color: #EDE0D4;">Número</label>
+      <span class="text-danger d-none small"></span>
+  </div>
+  
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite o CEP da sua rua" autofocus style="color: white; background-color: #4D2B1E;">
+        <label for="cep" style="color: #EDE0D4;">CEP</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Digite o complemento" autofocus style="color: white; background-color: #4D2B1E;">
+        <label for="complemento" style="color: #EDE0D4;">Complemento</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+  
+    <div class="mb-3">
+        <a href="/endereco/listagemenderecos" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+    </div>
+</form>
+
+<script>
+function carregarCidades(ufSelecionado) {
+    const cidadeSelect = document.getElementById('cidade');
+    cidadeSelect.innerHTML = ''; // Limpe as opções existentes
+
+    // Adiciona uma opção padrão
+    const opcaoPadrao = document.createElement('option');
+    opcaoPadrao.value = '';
+    opcaoPadrao.text = 'Escolha sua cidade ou município';
+    cidadeSelect.add(opcaoPadrao);
+
+
+    const cidadesPorEstado = {
+        // 'AC': ['Acrelândia', 'Assis Brasil', 'Brasiléia', 'Bujari', 'Capixaba', 'Cruzeiro do Sul', 'Epitaciolândia', 'Feijó', 'Jordão', 'Manoel Urbano', 'Marechal Thaumaturgo', 'Mâncio Lima', 'Plácido de Castro', 'Porto Acre', 'Porto Walter', 'Rio Branco', 'Rodrigues Alves', 'Santa Rosa do Purus', 'Sena Madureira', 'Senador Guiomard', 'Tarauacá', 'Xapuri'],
+        // 'SP': ['São Paulo', 'Campinas', 'Santos'],
+        // 'RJ': ['Rio de Janeiro', 'Niterói', 'Duque de Caxias'],
+        'ES': ['Afonso Cláudio', 'Água Doce do Norte', 'Águia Branca', 'Alegre', 'Alfredo Chaves', 'Alto Rio Novo', 'Anchieta', 'Apiacá', 'Aracruz', 'Atilio Vivacqua', 'Baixo Guandu', 'Barra de São Francisco', 'Boa Esperança', 'Bom Jesus do Norte', 'Brejetuba', 'Cachoeiro de Itapemirim', 'Cariacica', 'Castelo', 'Colatina', 'Conceição da Barra', 'Conceição do Castelo', 'Divino de São Lourenço', 'Domingos Martins', 'Dores do Rio Preto', 'Ecoporanga', 'Fundão', 'Governador Lindenberg', 'Guaçuí', 'Guarapari', 'Ibatiba', 'Ibiraçu', 'Ibitirama', 'Iconha', 'Irupi', 'Itaguaçu', 'Itapemirim', 'Itarana', 'Iúna', 'Jaguaré', 'Jerônimo Monteiro', 'João Neiva', 'Laranja da Terra', 'Linhares', 'Mantenópolis', 'Marataízes', 'Marechal Floriano', 'Marilândia', 'Mimoso do Sul', 'Montanha', 'Mucurici', 'Muniz Freire', 'Muqui', 'Nova Venécia', 'Pancas', 'Pedro Canário', 'Pinheiros', 'Piúma', 'Ponto Belo', 'Presidente Kennedy', 'Rio Bananal', 'Rio Novo do Sul', 'Santa Leopoldina', 'Santa Maria de Jetibá', 'Santa Teresa', 'São Domingos do Norte', 'São Gabriel da Palha', 'São José do Calçado', 'São Mateus', 'São Roque do Canaã', 'Serra', 'Sooretama', 'Vargem Alta', 'Venda Nova do Imigrante', 'Viana', 'Vila Pavão', 'Vila Valério', 'Vila Velha', 'Vitória']
+    };
+
+    if (cidadesPorEstado.hasOwnProperty(ufSelecionado)) {
+        cidadesPorEstado[ufSelecionado].forEach(cidade => {
+            const option = document.createElement('option');
+            option.value = cidade;
+            option.text = cidade;
+            cidadeSelect.add(option);
+        });
+    }
+}
+</script>
+
+<script>
+    document.getElementById('uf').addEventListener('change', function () {
+        carregarCidades(this.value);
+    });
+</script>
+
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %}

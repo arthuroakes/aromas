@@ -1,0 +1,93 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+  <div class="container">
+    <div class="row mt-5">
+        <!-- Dúvidas frequentes e chat lado a lado -->
+        <div class="col-md-8 main-content">
+            <div class="header">
+                <h3>Chat de Contato</h3>
+            </div>
+            <div class="chat-container">
+                <div class="message-container">
+                    <div class="message agent-message">
+                        <div class="message-text color_bege_claro">
+                            Olá! Em que posso ajudar?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <input type="text" id="user-message" placeholder="Digite sua mensagem..." style="background-color: #4D2B1E; color: #EDE0D4;" />
+                    <br>
+                    <br>
+                    <center><button onclick="sendMessage()">Enviar</button></center>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-md-offset-1">
+            <div class="faq-container">
+                <h3>Dúvidas Frequentes</h3>
+                <br>
+                <ul class="faq-list">
+                    <li><a href="#" onclick="sendQuestion('Meu pedido está atrasado?')">- Meu pedido está atrasado.</a></li>
+                    <li><a href="#" onclick="sendQuestion('Queria mudar a forma de pagamento.')">- Queria mudar a forma de
+                            pagamento.</a></li>
+                    <li><a href="#" onclick="sendQuestion('Meu pedido veio errado.')">- Meu pedido veio errado.</a></li>
+                    <li><a href="#" onclick="sendQuestion('Queria mudar meu endereço.')">- Queria mudar meu endereço.</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+      function sendQuestion(question) {
+        var messageContainer = document.querySelector(".message-container");
+        var userMessage = document.createElement("div");
+        userMessage.classList.add("message", "user-message");
+        var messageText = document.createElement("div");
+        messageText.classList.add("message-text");
+        messageText.textContent = question;
+        userMessage.appendChild(messageText);
+        messageContainer.appendChild(userMessage);
+        // Simular resposta do agente após 1 segundo
+        setTimeout(sendAgentMessage, 1000);
+      }
+
+      function sendMessage() {
+        var userMessageInput = document.getElementById("user-message");
+        var userMessageText = userMessageInput.value.trim();
+        if (userMessageText !== "") {
+          var messageContainer = document.querySelector(".message-container");
+          var userMessage = document.createElement("div");
+          userMessage.classList.add("message", "user-message");
+          var messageText = document.createElement("div");
+          messageText.classList.add("message-text");
+          messageText.textContent = userMessageText;
+          userMessage.appendChild(messageText);
+          messageContainer.appendChild(userMessage);
+          userMessageInput.value = "";
+          // Simular resposta do agente após 1 segundo
+          setTimeout(sendAgentMessage, 1000);
+        }
+      }
+
+      function sendAgentMessage() {
+        var messageContainer = document.querySelector(".message-container");
+        var agentMessage = document.createElement("div");
+        agentMessage.classList.add("message", "agent-message");
+        var messageText = document.createElement("div");
+        messageText.classList.add("message-text");
+        messageText.textContent = "O agente respondeu.";
+        agentMessage.appendChild(messageText);
+        messageContainer.appendChild(agentMessage);
+        // Rolar para a última mensagem
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+      }
+    </script>
+  </div>
+  </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Reservas Cadastradas</h1>
+    <a href="/reserva/novareserva" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Nova Reserva</a>
+</div>
+<hr>
+{% if reservas|length == 0 %}
+<p>Não há reservas cadastradas.</p>
+{% else %}
+<table class="table table-dark" style="border: 5px solid black;">
+    <thead>
+        <tr>
+            {% if usuario.funcionario %}
+            <th style="background-color: #4D2B1E; text-align: center;">Cliente</th> 
+            <th style="background-color: #4D2B1E; text-align: center;">Data e Hora do Cadastro</th>    
+            {% endif %}       
+            <th style="background-color: #4D2B1E; text-align: center;">Mesa Reservada</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Data Reservada</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Horário Reservado</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Quantidade de Pessoas</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in reservas %}
+        <tr data-id="{{ r.idReserva }}">
+            {% if usuario.funcionario %}
+            <td class="table-warning" align="center">{{ r.idCliente }}</td>
+            <td class="table-warning" align="center">{{ r.dataHoraCadastro }}</td>
+            {% endif %}
+            <td class="table-warning" align="center">{{ r.idMesa }}</td>
+            <td class="table-warning" align="center">{{ r.dataReserva }}</td>
+            <td class="table-warning" align="center">{{ r.horaReserva }}</td>
+            <td class="table-warning" align="center">{{ r.qtdPessoas }}</td>
+            <td class="table-warning" align="center">
+                <a href="/reserva/excluirreserva/{{ r.idReserva }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-trash"></i>
+                </a>
+
+                <a href="/reserva/modificarreserva/{{ r.idReserva }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+            </td>
+        </tr>    
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if totalPaginas > 1 %}
+<nav>
+    <ul class="pagination pagination-sm">
+      <!-- <li class="page-item {{ 'active' if paginaAtual == 1 }}" aria-current="page">
+        <a class="page-link" href="/Produto/listagemProduto?pa=1&tp={{ tamanhoPagina }}">1</a>
+      </li> -->
+      {% for i in range(1, totalPaginas + 1) %}
+      <li class="page-item">
+        <a class="page-link" style="background-color: #4D2B1E; color: #EDE0D4;" href="/reserva/listagemreservas?pa={{ i }}&tp={{ tamanhoPagina }}">{{ i }}</a>
+      </li>
+      {% endfor %}
+      <!-- <li class="page-item {{ 'active' if paginaAtual == totalPaginas }}" aria-current="page">
+        <a class="page-link" href="/Produto/listagemProduto?pa=totalPaginas&tp={{ tamanhoPagina }}">{{totalPaginas}}</a>
+      </li> -->
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
+
+{% block script %}
+<script src="/static/js/ativarTooltips.js"></script>
+{% endblock %} 

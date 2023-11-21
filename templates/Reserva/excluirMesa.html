@@ -1,0 +1,14 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Exclusão de Mesa</h1>
+<hr>
+<p class="lead">Deseja realmente excluir essa mesa <b>{{ mesa.numero }}</b>? </p>
+<form action="/mesa/excluirmesa" method="post">
+    <input type="hidden" name="idMesa" value="{{ mesa.idMesa }}">
+    <div class="mb-3">
+        <a href="/mesa/listagemmesas" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Excluir</button>
+    </div>
+</form>
+{% endblock %}

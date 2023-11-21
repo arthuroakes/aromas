@@ -1,0 +1,61 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Listagem de Categorias</h1>
+    <a href="/categoria/novacategoria" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Nova Categoria</a> 
+</div>
+<hr>
+{% if categorias|length == 0 %}
+<p>Não há categorias cadastradas.</p>
+{% else %}
+<table class="table table-dark" style="border: 5px solid black;">
+    <thead>
+        <tr>
+            <th style="background-color: #4D2B1E; text-align: center;">ID</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Nome</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categoria in categorias %}
+        <tr data-id="{{ categoria.idCategoria }}">
+            <td class="table-warning" align="center">{{ categoria.idCategoria }}</td>
+            <td class="table-warning" align="center">{{ categoria.nome }}</td>
+            <td class="table-warning" align="center">
+                <!-- Botão para excluir categoria -->
+                <a href="/categoria/excluircategoria/{{ categoria.idCategoria }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-trash-fill"></i> 
+                </a>
+                <!-- Botão para editar categoria -->
+                <a href="/categoria/modificarcategoria/{{ categoria.idCategoria }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if totalPaginas > 1 %}
+<nav aria-label="...">
+    <ul class="pagination pagination-sm">
+      <!-- <li class="page-item {{ 'active' if paginaAtual == 1 }}" aria-current="page">
+        <a class="page-link" href="/categoria/listagemCategoria?pa=1&tp={{ tamanhoPagina }}">1</a>
+      </li> -->
+      {% for i in range(1, totalPaginas + 1) %}
+      <li class="page-item">
+        <a class="page-link" style="background-color: #4D2B1E; color: #EDE0D4;" href="/categoria/listagemcategoria?pa={{ i }}&tp={{ tamanhoPagina }}">{{ i }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+
+
+{% endblock %}
+
+{% block script %}
+<script src="/static/js/ativarTooltips.js"></script>
+{% endblock %}

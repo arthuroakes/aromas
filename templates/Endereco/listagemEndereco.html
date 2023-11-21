@@ -1,0 +1,48 @@
+{% extends "Base/base.html" %} 
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Endereços Cadastrados</h1>
+    <a href="/endereco/novoendereco" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Novo Endereço</a>
+</div>
+<hr>
+{% if enderecos|length == 0 %}
+<p>Não há endereços cadastrados.</p>
+{% else %}
+<table class="table table-dark" style="border: 5px solid black;">
+    <thead>
+        <tr>
+            <th style="background-color: #4D2B1E; text-align: center;">UF</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Cidade</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Bairro</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Rua</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Número da Casa</th>
+            <th style="background-color: #4D2B1E; text-align: center;">CEP da Rua</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Complemento</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for endereco in enderecos %}
+            <tr data-id="{{ endereco.idEndereco }}">
+                <td class="table-warning" align="center">{{ endereco.uf }}</td>
+                <td class="table-warning" align="center">{{ endereco.cidade }}</td>
+                <td class="table-warning" align="center">{{ endereco.bairro }}</td>
+                <td class="table-warning" align="center">{{ endereco.rua }}</td>
+                <td class="table-warning" align="center">{{ endereco.numero }}</td>
+                <td class="table-warning" align="center">{{ endereco.cep }}</td>
+                <td class="table-warning" align="center">{{ endereco.complemento }}</td>
+                <td class="table-warning" align="center">
+                    <a href="/endereco/excluirendereco/{{ endereco.idEndereco }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                        <i class="bi bi-trash-fill"></i> 
+                    </a>
+                    <a href="/endereco/modificarendereco/{{ endereco.idEndereco }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                </td>
+            </tr>    
+        {% endfor %}
+    </tbody> 
+</table>
+{% endif %}
+{% endblock %}

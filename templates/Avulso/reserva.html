@@ -1,0 +1,87 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+  <div class="header">
+    <h3>Reservas</h3>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="#" class="img_mesas">
+      </div>
+      <div class="col-md-6">
+        <div class="div_center">
+          <br>
+          <br>
+          <div class="descricao">
+            <div class="descricao grifado bege_claro_backgroud quadrado text-center">
+              <h3>Reservas</h3>
+            </div>
+            <br>
+            <div class="descrição color_bege_claro text text-center">Faça sua reserva, e aguarde sua confirmação!</div>
+            <div class="form_container">
+              <br>
+              <form>
+                <div class="form-group">
+                  <center><label for="mesa">Mesa:</label></center>
+                  <input class="form-control marrom_terroso_backgroud" type="text" id="mesa" name="mesa">
+                </div>
+                <br>
+                <div class="form-group">
+                  <center><label for="horario">Horário:</label></center>
+                  <select class="form-control marrom_terroso_backgroud" id="horario" name="horario">
+                    <option value="08:00">8:00 AM</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="08:00">10:00 AM</option>
+                    <option value="09:00">11:00 AM</option>
+                    <option value="08:00">12:00 PM</option>
+                    <option value="09:00">13:00 PM</option>
+                    <option value="18:00">14:00 PM</option>
+                    <option value="08:00">15:00 PM</option>
+                    <option value="09:00">16:00 PM</option>
+                    <option value="08:00">17:00 PM</option>
+                    <option value="09:00">18:00 PM</option>
+                  </select>
+                </div>
+                <br>
+                  <div class="form-group"></div>
+                <center><label for="data">Dia da Reserva:</label></center>
+                <input class="form-control marrom_terroso_backgroud" type="datetime-local" id="data"
+                  name="Dia da Reserva">
+            </div>
+            <br>
+            <div class="form-group">
+              <center><label for="num_pessoa">Número de pessoas:</label></center>
+              <select class="form-control marrom_terroso_backgroud" id="num_pessoa" name="num_pessoa" >
+                <option value="1">1 pessoa</option>
+                <option value="2">2 pessoas</option>
+                <option value="3">3 pessoas</option>
+                <option value="4">4 pessoas</option>
+                <option value="5">5 pessoas</option>
+                <option value="6">6 pessoas</option>
+                <option value="7">7 pessoas</option>
+                <option value="8">8 pessoas</option>
+                <option value="9">9 pessoas</option>
+                <option value="10">10 pessoas</option>
+              </select>
+            </div>
+
+            <div class="text-right">
+              <br>
+              <center>
+                <a href="confirmar_reserva.html">
+                  <input class="btn btn-primary marrom_terroso_backgroud" type="button" name="confirmar"
+                    value="Confirmar">
+                </a>
+              </center>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adicione as seguintes linhas para incluir o Bootstrap JS e jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

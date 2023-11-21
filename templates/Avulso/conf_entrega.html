@@ -1,0 +1,52 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+    <div class="header">
+        <h3>Acompanhe seu Pedido</h3>
+    </div>
+    <div class="delivery-info">
+        <h3>Pedido Entregue com Sucesso:</h3>
+        <p>Pedido #4020, realizado 14:40h foi entregue dentro do prazo no horário de 15:20h.</p>
+    </div>
+    <br>
+    <div class="delivery-info">
+        <h3>Avaliar Pedido:</h3>
+        <div class="rating-container">
+            <div class="rating-stars">
+                <span class="star" data-rating="1">&#9733;</span>
+                <span class="star" data-rating="2">&#9733;</span>
+                <span class="star" data-rating="3">&#9733;</span>
+                <span class="star" data-rating="4">&#9733;</span>
+                <span class="star" data-rating="5">&#9733;</span>
+            </div>
+            <p class="rating-text">Avaliação: <span id="selected-rating">0</span>/5</p>
+        </div>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" id="submit-rating">Enviar Avaliação</button>
+    </div>
+    <div class="button-container">
+        <center><a href="/" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Voltar ao início</a></center>
+    </div>
+
+    <!-- Adicione o script JavaScript -->
+    <script>
+        const stars = document.querySelectorAll(".star");
+        const ratingText = document.getElementById("selected-rating");
+        const submitButton = document.getElementById("submit-rating");
+
+        let selectedRating = 0;
+
+        stars.forEach((star) => {
+            star.addEventListener("click", () => {
+                selectedRating = parseInt(star.getAttribute("data-rating"));
+                ratingText.textContent = selectedRating;
+                stars.forEach((s) => s.classList.remove("selected"));
+                star.classList.add("selected");
+            });
+        });
+
+        submitButton.addEventListener("click", () => {
+            // Aqui você pode enviar a avaliação para o servidor ou realizar outras ações
+            alert("Avaliação enviada com sucesso!");
+        });
+    </script>
+{% endblock %}

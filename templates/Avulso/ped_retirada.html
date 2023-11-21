@@ -1,0 +1,84 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+    <div class="header">
+        <h3>Retirada</h3>
+    </div>
+    <div class="retangulo_600X400">
+        <div class="topo">
+            <div class="titulo_marrom">Finalizar Compra</div>
+            <div class="descricao">Selecione as opções abaixo para finalizar o seu pedido.</div>
+        </div>
+        <div class="form-group">
+            <br>
+            <label for="opcao-entrega">Opção de Entrega:</label>
+            <select class="form-control" id="opcao-entrega" name="opcao-entrega">
+                <option value="entrega"><a href="/pedido/entrega">Entrega</a></option>
+                <option value="retirada"><a href="/pedido/retirada">Retirada</a></option>
+            </select>
+        </div>        
+        <div class="form-group">
+            <br>
+            <label for="horario">Horário da Retirada do Produto:</label>
+            <select class="form-control marrom_terroso_backgroud" id="horario" name="horario">
+              <option value="08:00">8:00 AM</option>
+              <option value="09:00">9:00 AM</option>
+              <option value="08:00">10:00 AM</option>
+              <option value="09:00">11:00 AM</option>
+              <option value="08:00">12:00 PM</option>
+              <option value="09:00">13:00 PM</option>
+              <option value="18:00">14:00 PM</option>
+              <option value="08:00">15:00 PM</option>
+              <option value="09:00">16:00 PM</option>
+              <option value="08:00">17:00 PM</option>
+              <option value="09:00">18:00 PM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <br>
+            <label for="cpf">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome">
+        </div>
+        <div class="form-group">
+            <br>
+            <label for="cpf">CPF:</label>
+            <input type="number" class="form-control" id="cpf" name="cpf">
+        </div>
+        <div class="form-group">
+            <br>
+            <label for="number">Número de contato:</label>
+            <input type="number" class="form-control" id="number" name="number">
+        </div>
+        <div class="form-group">
+            <br>
+            <label for="pagamento">Forma de Pagamento:</label>
+            <select class="form-control" id="pagamento" name="pagamento" onchange="redirecionar()">
+                <option value="cartao">Cartão</option>
+                <option value="pix">Pix</option>
+            </select>
+        </div>
+        <div class="submit-container">
+            <br>
+            <a href="andapedido_retirada.html" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Finalizar Compra</a>
+        </div>
+    </div>
+    </form>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery scripts here if needed -->
+    <script>
+        function redirecionar() {
+            var selectElement = document.getElementById("pagamento");
+            var selectedValue = selectElement.value;
+
+            // Verifica qual opção foi selecionada e redireciona para a URL apropriada
+            if (selectedValue === "cartao") {
+                window.location.href = "meio_pagamento.html";
+            } else if (selectedValue === "pix") {
+                window.location.href = "pix.html";
+            } else if (selectedValue === "dinheiro") {
+                window.location.href = "url_para_pagina_dinheiro";
+            }
+        }
+    </script>
+{% endblock %}

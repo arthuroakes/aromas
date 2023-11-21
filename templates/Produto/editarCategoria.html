@@ -1,0 +1,30 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Editar Dados da Categoria</h1>
+<hr>
+<p class="lead">
+    Preencha corretamente os campos abaixo para atualizar a categoria .
+</p>
+<form method="post">
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ categoria.nome }}" placeholder="Digite o nome do produto" autofocus style="color: white; background-color: #4D2B1E;">
+        <label for="nome" style="color: #EDE0D4;">Nome</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+  
+    <div class="mb-3">
+        <a href="/categoria/listagemcategoria" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+    </div>
+</form>
+
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %} 

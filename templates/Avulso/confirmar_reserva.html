@@ -1,0 +1,83 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+  <div class="header">
+    <h3>Confirmar Reservas</h3>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="#" class="img_mesas">
+      </div>
+      <div class="col-md-6">
+        <div class="div_center">
+          <br>
+          <br>
+          <div class="descricao">
+          <div class="descricao grifado bege_claro_backgroud quadrado text-center">
+            <h3>Confirmação de Reservas</h3>
+          </div>
+          <br>
+          <div class="descrição color_bege_claro text text-center">Confirme seus dados para concluir sua reserva!</div>
+          <div class="form_container">
+            <br>
+            <form>
+              <div class="form-group">
+                <center><label for="mesa">Telefone com DDD:</label></center>
+                <input class="form-control marrom_terroso_backgroud" type="number" id="mesa" name="mesa">
+              </div>
+              <br>
+              <div class="form-group">
+                <center><label for="mesa">Nome e Sobrenome:</label></center>
+                <input class="form-control marrom_terroso_backgroud" type="text" id="mesa" name="mesa">
+              </div>
+              <br>
+              <div class="form-group">
+                <center><label for="mesa">Email:</label></center>
+                <input class="form-control marrom_terroso_backgroud" type="text" id="mesa" name="mesa">
+              </div>
+              <br>
+              <div class="form-group">
+                <center><label for="mesa">Gênero:</label></center>
+                <select class="form-control marrom_terroso_backgroud" id="text" name="num_pessoa">
+                  <option value="Feminino">Feminino</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+              <br>
+              <center>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
+                    Confirmar
+                </button>
+                <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmação de Reserva</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        Olá, sua reserva foi concluída com sucesso!
+                        <br>
+                        Confira os detalhes em "Minhas Reservas", clicando no ícone de menu.
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+              </center>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adicione as seguintes linhas para incluir o Bootstrap JS e jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Exclusão de Cliente</h1>
+<hr>
+<p class="lead">Deseja realmente excluir o cliente <b>{{ cliente.nome }}</b>?</p>
+<form action="/cliente/excluircliente" method="post">
+    <input type="hidden" name="idUsuario" value="{{ cliente.idUsuario }}"> 
+    <div class="mb-3">
+        <a href="/cliente/listagemclientes" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Excluir</button>
+    </div>
+</form>
+{% endblock %}

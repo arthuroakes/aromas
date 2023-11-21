@@ -1,0 +1,456 @@
+/* Fonts */
+@font-face {
+  font-family: "Alata";
+  src: url("Alata-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Baloo2";
+  src: url("Baloo2.ttf");
+}
+
+@font-face {
+  font-family: "IBM";
+  src: url("IBM.ttf");
+}
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+body {
+  background-color: #B08968;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+.header {
+  background-color: #4D2B1E;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.menu-item {
+  color: #4D2B1E;
+  /* Set the text color for menu items */
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Pedido Styles */
+.rectangle {
+  background-color: #CE9468;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 100px;
+  border-radius: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.item img {
+  max-width: 100%;
+  height: auto;
+  margin-right: 10px;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.observations {
+  background-color: #EDE0D4;
+  padding: 10px;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius: 10px;
+  resize: none;
+  height: 80px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.total {
+  background-color: #CE9468;
+  padding: 10px;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.checkout {
+  background-color: #4D2B1E;
+  color: #FFFFFF;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Home Section Styles */
+.home {
+  width: 100%;
+  height: 100vh;
+  background-image: url(fundo.png);
+  background-position: center;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2rem;
+}
+
+.home-text h1 {
+  color: #4D2B1E;
+  font-size: 60px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  font-family: 'Lobster', cursive;
+}
+
+.home-text p {
+  color: #292929;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 23px 0;
+}
+
+.home-img {
+  display: flex;
+  justify-content: center;
+}
+
+.home-img img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #4D2B1E;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* No seu arquivo de estilo CSS */
+.form-check-label a {
+  color: inherit;
+  /* Para manter a cor do texto padrÃ£o */
+  text-decoration: none;
+  /* Remove o sublinhado */
+}
+
+.form-check-label a:hover {
+  /* Define um estilo para quando o mouse estiver sobre o link */
+  text-decoration: underline;
+  /* Pode ser "none" para remover o sublinhado no hover */
+}
+
+.custom-card {
+  background-color: #EDE0D4;
+}
+
+.header {
+  text-align: left;
+  padding: 20px;
+}
+
+.status {
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.delivery-info {
+  margin-top: 20px;
+  text-align: left;
+  background-color: #EDE0D4;
+  /* Cor de fundo desejada */
+  padding: 10px;
+  /* EspaÃ§amento interno para o conteÃºdo */
+  border-radius: 10px;
+}
+
+.button-container {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.button-container a {
+  margin: 5px;
+}
+
+.chat-container {
+  margin: 20px auto;
+  max-width: 1000px;
+  background-color: #EDE0D4;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-container {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.message {
+  margin-bottom: 20px;
+}
+
+.botao_cad {
+  border-radius: 0.6rem;
+  width: 6rem;
+  height: 2.5rem;
+  color: #EDE0D4;
+  background-color: #B08968;
+}
+
+input [type="submit"],
+input[type="reset"] {
+  color: #EDE0D4;
+  background-color: #4D2B1E;
+  width: 8rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+}
+
+
+.user-message {
+  text-align: right;
+}
+
+.agent-message {
+  text-align: left;
+}
+
+.message-text {
+  display: inline-block;
+  padding: 15px 15px;
+  border-radius: 20px;
+}
+
+.user-message .message-text {
+  background-color: #4D2B1E;
+  color: white;
+}
+
+.agent-message .message-text {
+  background-color: #4D2B1E;
+  color: #EDE0D4;
+}
+
+.input-container {
+  padding: 20px;
+  border-top: 1px solid #EDE0D4;
+}
+
+.input-container input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-container button {
+  padding: 10px 20px;
+  background-color: #4D2B1E;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.retangulo_600X400 {
+  width: 600px;
+  height: 800px;
+  background-color: #EDE0D4;
+  border-radius: 32px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo_marrom {
+  color: #4D2B1E;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.descricao {
+  color: #4D2B1E;
+  font-size: 14px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.custom-col {
+  background-color: #CE9468;
+}
+
+.rating-stars .star {
+  font-size: 30px;
+  /* Tamanho desejado das estrelas */
+  cursor: pointer;
+}
+
+.descricao {
+  font-family: 'Baloo 2', sans-serif;
+}
+
+/* Exemplo de aplicaÃ§Ã£o de fonte Alata */
+.descriÃ§Ã£o {
+  font-family: 'Alata', sans-serif;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+}
+
+.custom-img {
+  max-width: 10%;
+  /* Defina o tamanho mÃ¡ximo que vocÃª deseja para as imagens */
+  height: auto;
+  /* MantÃ©m a proporÃ§Ã£o original da imagem */
+}
+
+.custom-dropdown-menu {
+  background-color: #EDE0D4;
+}
+
+.faq-container {
+  background-color: #EDE0D4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.faq-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.faq-list li {
+  margin-bottom: 10px;
+}
+
+.navbar0 {
+  background-color: #CE9468;
+}
+
+.navbar-brand {
+  margin-right: auto;
+}
+
+.navbar-toggler {
+  order: 2; /* Coloca o Ã­cone de menu Ã  direita */
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.nav-item {
+  margin-left: 20px; /* EspaÃ§amento entre os itens do menu */
+}
+
+.centered-menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reserva-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.reserva-detail {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Estilo para o botÃ£o de voltar */
+.btn-voltar {
+  margin-top: 20px;
+}
+
+.pix-info {
+  border: 2px solid #ccc; /* Borda de 2px com cor cinza */
+  padding: 20px; /* EspaÃ§amento interno de 20px */
+  margin: 20px auto; /* Margens superior e inferior de 20px, e alinhamento central horizontal */
+  max-width: 400px; /* Largura mÃ¡xima do retÃ¢ngulo */
+  text-align: center; /* Alinhamento de texto centralizado */
+}
+
+.pix-qr-code {
+  max-width: 100%; /* Para garantir que o QR Code nÃ£o exceda o retÃ¢ngulo */
+}
+
+.container-rect {
+  background-color: #EDE0D4;
+  padding: 20px;
+  border: 1px solid #000;
+  margin: 20px;
+}
+
+a {
+  text-decoration: none; /* Remove o sublinhado */
+  color: #000; /* Define a cor do texto do link */
+}
+
+.descricao {
+  background-color: #EDE0D4; /* Cor de fundo desejada */
+  padding: 20px; /* EspaÃ§amento interno para o retÃ¢ngulo */
+  border-radius: 10px; /* Raio de arredondamento do retÃ¢ngulo */
+  width: fit-content; /* Tamanho do retÃ¢ngulo se ajustarÃ¡ ao conteÃºdo */
+  margin: 0 auto; /* Centralizar horizontalmente */
+}
+
+/* Este Ã© um exemplo de CSS */
+/* .card {
+  width: 400px; /* Defina a largura desejada */
+  height: 520px; /* Defina a altura desejada */
+} */
+
+.text-color-custom {
+  color: black; /* Defina a cor desejada aqui */
+}
+
+input[type="text"] {
+  color: white;
+}

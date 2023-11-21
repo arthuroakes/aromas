@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/static/img/Logo.png" type="image/x-icon">
+  <title>Aroma's Cafeteria e Bistrô</title>
+  <link rel="stylesheet" href="/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style_home.css">
+</head>
+
+<body>
+  <header class="sticky-top bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light navbar0">
+      <div class="container">
+        <a class="navbar-brand" href="/" style="text-align: center;"><img src="/static/img/Logo.png" style="width: 45px;"> <br> Aroma's Cafeteria e Bistrô</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav nav-underline ms-auto">
+            {% set pagina_atual = request.url.path %}
+            <li class="nav-item">
+              <a class="nav-link text-dark custom-link {% if pagina_atual == '/' %}active{% endif %}"  href="/">Página Inicial</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark {% if pagina_atual == '/sobrenos' %}active{% endif %}" href="/sobrenos">Sobre Nós</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark {% if pagina_atual == '/localizacao' %}active{% endif %}" href="/localizacao">Localização</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link text-dark {% if pagina_atual == '/produtos' %}active{% endif %}" href="/produtos">Produtos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark {% if pagina_atual == '/contato' %}active{% endif %}" href="/contato">Contato</a>
+            </li>
+            {% if usuario: %}
+            {% if usuario.cliente %} 
+            <li class="nav-item">
+              <a href="/pedido/carrinho" class="nav-link text-dark {% if pagina_atual == '/pedido/carrinho' %}active{% endif %}">
+                <i class="bi bi-cart-fill"></i> Carrinho <span class="badge" style="background-color: #4D2B1E; color: #EDE0D4;">
+                  {{ qtdeItensCarrinho }} 
+                </span>
+              </a>
+            </li>
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle"></i>
+                Olá, {{ usuario.nome }} 
+                <i class="bi bi-justify"></i>                
+              </a>
+              <ul class="dropdown-menu custom-dropdown-menu">
+                <li>
+                    <a href="/cliente/minhaconta" class="dropdown-item {% if pagina_atual == '/cliente/minhaconta' %}active{% endif %}">
+                        <i class="bi bi-person-fill"></i> Minha Conta
+                    </a>
+                </li>
+                <li>
+                    <a href="/cliente/meusenderecos" class="dropdown-item {% if pagina_atual == '/endereco/listagemenderecos' %}active{% endif %}">
+                        <i class="bi bi-house-fill"></i> Meus Endereços
+                    </a>
+                </li>
+                <li>
+                    <a href="/cliente/meuspedidos" class="dropdown-item {% if pagina_atual == '/cliente/meuspedidos' %}active{% endif %}">
+                      <i class="bi bi-basket3-fill"></i> Meus Pedidos
+                    </a>
+                </li> 
+                <li>
+                  <a href="/pedido/andamento" class="dropdown-item {% if pagina_atual == '/pedido/andamento' %}active{% endif %}">
+                    <i class="bi bi-card-checklist"></i> Acompanhar Pedido
+                  </a>
+                </li>
+                <li>
+                    <a href="/cliente/minhasreservas" class="dropdown-item {% if pagina_atual == '/cliente/minhasreservas' %}active{% endif %}">
+                      <i class="bi bi-journal-text"></i> Minhas Reservas 
+                    </a> 
+                </li>
+                <li>
+                    <a href="/alterarsenha" class="dropdown-item {% if pagina_atual == '/alterarsenha' %}active{% endif %}">
+                      <i class="bi bi-pen-fill"></i> Alterar Senha
+                    </a>
+                </li>
+            </ul>
+            </div>
+            {% endif %} 
+            {% if usuario.funcionario %} 
+            <!-- Adicionar Itens de Menu Específicos de Funcionário -->
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-person-square"></i>
+                Olá, {{ usuario.nome }}
+                <i class="bi bi-justify"></i>                
+              </a>
+              <ul class="dropdown-menu custom-dropdown-menu">
+                <li>
+                  <a href="/funcionario/minhaconta" class="dropdown-item {% if pagina_atual == '/funcionario/minhaconta' %}active{% endif %}">
+                    <i class="bi bi-person-vcard"></i> Meus Dados
+                  </a>
+                </li>
+                <li>
+                  <a href="/cliente/listagemclientes" class="dropdown-item {% if pagina_atual == '/cliente/listagemclientes' %}active{% endif %}"> 
+                    <i class="bi bi-person-circle"></i> Clientes
+                  </a>
+                </li>
+                <li>
+                  <a href="/produto/listagemprodutos" class="dropdown-item {% if pagina_atual == '/produto/listagemprodutos' %}active{% endif %}">
+                    <i class="bi bi-basket-fill"></i> Produtos
+                  </a>
+                </li>
+                <li>
+                  <a href="/categoria/listagemcategoria" class="dropdown-item {% if pagina_atual == '/categoria/listagemcategoria' %}active{% endif %}">
+                    <i class="bi bi-window"></i> Categorias
+                  </a>
+                </li>
+                <li>
+                  <a href="/mesa/listagemmesas" class="dropdown-item {% if pagina_atual == '/mesa/listagemmesas' %}active{% endif %}">
+                    <i class="bi bi-pen"></i> Mesas
+                  </a>
+                </li>
+                <li>
+                  <a href="/reserva/listagemreservas" class="dropdown-item {% if pagina_atual == '/reserva/listagemreservas' %}active{% endif %}">
+                    <i class="bi bi-journals"></i> Reservas
+                  </a>
+                </li>
+                <li>
+                  <a href="/pedido/listagempedidos" class="dropdown-item {% if pagina_atual == '/pedido/listagempedidos' %}active{% endif %}">
+                    <i class="bi bi-bag-check-fill"></i> Pedidos
+                  </a>
+                </li>
+                <li>
+                  <a href="/alterarsenha" class="dropdown-item {% if pagina_atual == '/alterarsenha' %}active{% endif %}">
+                    <i class="bi bi-pen-fill"></i> Alterar Senha
+                  </a>
+                </li>                
+              </ul>
+            </div>
+            {% endif %}
+            {% if usuario.admin: %}
+            <!-- Adicionar Itens de Menu Específicos de Administrador -->
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-person-fill-lock"></i>
+                Olá, {{ usuario.nome }}
+                <i class="bi bi-justify"></i>                
+              </a>
+              <ul class="dropdown-menu custom-dropdown-menu">
+                <li>
+                  <a href="/funcionario/listagemfuncionarios" class="dropdown-item {% if pagina_atual == '/funcionario/listagemfuncionarios' %}active{% endif %}">
+                    <i class="bi bi-person-vcard"></i> Funcionários
+                  </a>
+                </li>
+                <li>
+                  <a href="/cliente/listagemclientes" class="dropdown-item {% if pagina_atual == '/cliente/listagemclientes' %}active{% endif %}">
+                    <i class="bi bi-person-circle"></i> Clientes
+                  </a>
+                </li>
+                <li>
+                  <a href="/produto/listagemprodutos" class="dropdown-item {% if pagina_atual == '/produto/listagemprodutos' %}active{% endif %}">
+                    <i class="bi bi-basket-fill"></i> Produtos
+                  </a>
+                </li>
+                <li>
+                  <a href="/categoria/listagemcategoria" class="dropdown-item {% if pagina_atual == '/categoria/listagemcategoria' %}active{% endif %}">
+                    <i class="bi bi-window"></i> Categorias
+                  </a>
+                </li>
+                <li>
+                  <a href="/pedido/listagemtodospedidos" class="dropdown-item {% if pagina_atual == '/pedido/listagem' %}active{% endif %}">
+                    <i class="bi bi-bag-check-fill"></i> Pedidos 
+                  </a>
+                </li>
+                <li>
+                  <a href="/alterarsenha" class="dropdown-item {% if pagina_atual == '/alterarsenha' %}active{% endif %}">
+                    <i class="bi bi-pen-fill"></i> Alterar Senha
+                  </a>
+                </li>                
+              </ul>
+            </div>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/logout"> <i class="bi bi-x-circle-fill"></i> Sair </a>
+            </li>
+            {% else: %}
+            <li class="nav-item">
+              <a class="nav-link text-dark {% if pagina_atual == '/novocliente' %}active{% endif %}" href="/novocliente">Criar Conta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark {% if pagina_atual == '/login' %}active{% endif %}" href="/login">Entrar</a>
+            </li>
+            {% endif %}
+
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container my-5 pt-3">
+    {% block conteudo %}
+    <!-- Conteúdo do site aqui -->
+
+    <!-- Scripts do Bootstrap (jQuery e Popper.js) -->
+    {% endblock %}
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+
+  <!-- Incluir o link para o Bootstrap JS (opcional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

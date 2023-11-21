@@ -1,0 +1,86 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Editar Dados do Produto</h1>
+<hr>
+<p class="lead">
+    Preencha corretamente os campos abaixo para atualizar o produto. 
+</p>
+<form method="post" enctype="multipart/form-data">
+  
+    <div class="form-floating mb-3">
+        <select class="form-select" id="idCategoria" name="idCategoria" style="background-color: #4D2B1E; color: #EDE0D4;">
+            <option value="" disabled>Escolha uma categoria</option>
+            {% for c in categorias: %}
+                {% if c.idCategoria == produto.idCategoria %}
+                    <option value="{{ c.idCategoria }}" selected>{{ c.nome }}</option>
+                {% else %}
+                    <option value="{{ c.idCategoria }}">{{ c.nome }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <label for="idCategoria" style="color: #EDE0D4;">Escolha a Categoria</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ produto.nome }}" placeholder="Digite o nome do produto" autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="nome" style="color: #EDE0D4;">Nome</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="preco" name="preco" value="{{ produto.preco }}" placeholder="Digite o preço do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="preco" style="color: #EDE0D4;">Preço</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="descricao" name="descricao" value="{{ produto.descricao }}" placeholder="Digite a descrição do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="descricao" style="color: #EDE0D4;">Descrição</label>
+        <span class="text-danger d-none small"></span> 
+    </div>  
+  
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="qtdEstoque" name="qtdEstoque" value="{{ produto.qtdEstoque }}" placeholder="Digite a quantidade em estoque do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="qtdEstoque" style="color: #EDE0D4;">Quantidade em Estoque</label>
+        <span class="text-danger d-none small"></span>
+    </div>  
+
+    <h5>Em Promoção:</h5>
+
+    <div class="form-check form-check-inline mb-3">
+        <input class="form-check-input" type="radio" name="emPromocao" value="sim" id="emPromocaoSim" style="background-color: #4D2B1E; color: #EDE0D4;"
+        {% if produto.emPromocao == "sim" %} 
+            checked
+        {% endif %}>
+        <label class="form-check-label" for="emPromocaoSim" style="color: #EDE0D4;">Sim</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="emPromocao" value="nao" id="emPromocaoNao" style="background-color: #4D2B1E; color: #EDE0D4;"
+        {% if produto.emPromocao == "nao" %}
+            checked
+        {% endif %}>
+        <label class="form-check-label" for="emPromocaoNao" style="color: #EDE0D4;">Não</label>
+    </div>  
+
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dataLancamento" name="dataLancamento" value="{{ produto.dataLancamento }}" placeholder="Digite a data de lançamento do produto" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="dataLancamento" style="color: #EDE0D4;">Data de Lançamento</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="mb-3">
+        <a href="/produto/listagemprodutos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Salvar</button>
+    </div>
+</form>
+
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %}

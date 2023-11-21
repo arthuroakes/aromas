@@ -1,0 +1,14 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Exclusão de Item do Carrinho</h1>
+<hr>
+<p class="lead">Deseja realmente excluir <b>{{ produto.nome }}</b> do carrinho?</p>
+<form action="/pedido/excluiritem" method="post">
+    <input type="hidden" name="idProduto" value="{{ produto.idProduto }}"> 
+    <div class="mb-3">
+        <a href="/pedido/carrinho" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Excluir</button>
+    </div>
+</form>
+{% endblock %}

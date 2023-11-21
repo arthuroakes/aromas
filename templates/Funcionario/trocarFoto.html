@@ -1,0 +1,45 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+
+<h1>Trocar Foto</h1>
+<hr>
+<form method="post" enctype="multipart/form-data">
+
+    <h2>Foto Atual:</h2>
+    <div class="col-sm-4 col-lg-3">
+    <img src="/static/img/funcionarios/{{ funcionario.idUsuario|id_img }}.jpg" class="img-thumbnail" />
+    </div>
+
+    <div class="col-12 mb-3">
+        <label for="arquivoImagem" class="form-label" style="color: #EDE0D4;">Selecione o Arquivo de Imagem</label>
+        <input class="form-control" type="file" id="arquivoImagem" name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg" required style="background-color: #4D2B1E; color: #EDE0D4;">
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="mb-3">
+        <a href="/funcionario/minhaconta" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Salvar</button>
+    </div>
+
+</form>
+
+<!-- LOCAL PARA MOSTRAR IMAGEM SELECIONADA -->
+<div class="col-3">
+    <img id="preview" src="" class="border border-2 rounded rounded-3 p-2 w-100 d-none" />
+</div>
+<!-- ------------------------------------- -->
+<!-- SCRIPT PARA MOSTRAR IMAGEM SELECIONADA -->
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var preview = document.getElementById('preview');
+            preview.src = reader.result;
+            preview.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Alteração de Senha</h1>
+<hr>
+<form method="post">    
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual" style="color: white; background-color: #4D2B1E;">
+        <label for="senhaAtual" style="color: #EDE0D4;">Senha Atual</label>
+        <span class="text-danger d-none small"></span>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" onclick="showPassword('senhaAtual')" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Mostrar Senha</label>
+        </div>
+    </div>
+    
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="novaSenha" name="novaSenha" placeholder="Digite sua nova senha" style="color: white; background-color: #4D2B1E;">
+        <label for="novaSenha" style="color: #EDE0D4;">Nova Senha</label>
+        <span class="text-danger d-none small"></span>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" onclick="showPassword('novaSenha')" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Mostrar Senha</label>
+        </div>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="confNovaSenha" name="confNovaSenha" placeholder="Digite novamente sua nova senha" style="color: white; background-color: #4D2B1E;">
+        <label for="confNovaSenha" style="color: #EDE0D4;">Confirme Sua Nova Senha</label>
+        <span class="text-danger d-none small"></span>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" onclick="showPassword('confNovaSenha')" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Mostrar Senha</label>
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <a href="/" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Alterar</button>
+    </div>
+</form>
+
+{% if erros: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = [];
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+
+<script>
+    function showPassword(id) {
+        var x = document.getElementById(id);
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+{% endblock %}

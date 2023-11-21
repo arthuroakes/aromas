@@ -1,0 +1,60 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Editar Dados do Cliente</h1> 
+<hr>
+<p class="lead">
+</p>
+<form method="post">
+  
+    <div class="form-floating mb-3"> 
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ cliente.nome }}" placeholder="Digite seu nome completo, sem abreviações" autofocus style="color: white; background-color: #4D2B1E;">
+        <label for="nome" style="color: #EDE0D4;">Nome Completo</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" value="{{ cliente.dataNascimento }}" style="color: white; background-color: #4D2B1E;">
+        <label for="dataNascimento" style="color: #EDE0D4;">Data de Nascimento</label>
+        <span class="text-danger d-none small"></span>
+    </div>  
+  
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="cpf" name="cpf" value="{{ cliente.cpf }}" placeholder="Digite seu CPF" style="color: white; background-color: #4D2B1E;">
+        <label for="cpf" style="color: #EDE0D4;">CPF</label>
+        <span class="text-danger d-none small"></span>
+    </div>  
+
+    {% if usuario.funcionario %}
+    <div class="form-floating mb-3"> 
+        <input type="number" class="form-control" id="pontuacao" name="pontuacao" value="{{ cliente.pontuacao }}" placeholder="Digite a pontuação do cliente" style="color: white; background-color: #4D2B1E;">
+        <label for="pontuacao" style="color: #EDE0D4;">Pontuação</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    {% endif %} 
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="telefone" name="telefone" value="{{ cliente.telefone }}" placeholder="Telefone" style="color: white; background-color: #4D2B1E;">
+        <label for="telefone" style="color: #EDE0D4;">Telefone</label>
+        <span class="text-danger d-none small"></span>
+    </div>   
+
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" name="email" value="{{ cliente.email }}" placeholder="Digite seu e-mail" style="color: white; background-color: #4D2B1E;">
+        <label for="email" style="color: #EDE0D4;">E-mail</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+    
+    <div class="mb-3">
+        <a {% if usuario.cliente %} href="/cliente/minhaconta" {% else: %} href="/cliente/listagemclientes" {% endif %} class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Salvar</button>
+    </div>
+</form>
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script>
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %}

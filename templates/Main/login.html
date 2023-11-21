@@ -1,0 +1,59 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1 style="color: #281915;">Login</h1>
+<hr>
+{% if not logado %}
+    {% if request.query_params["returnUrl"] %}
+    <p class="lead">A página que você tentou acessar requer que esteja logado. Faça o login para prosseguir.</p>
+    {% endif %}
+    <form method="post">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" value="{{ email }}" autofocus style="color: white; background-color: #4D2B1E;">
+            <label for="email" style="color: #EDE0D4;">E-mail</label>
+            <span class="text-danger d-none small"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" style="color: white; background-color: #4D2B1E;">
+            <label for="senha" style="color: #EDE0D4;">Senha</label>
+            <span class="text-danger d-none small"></span>  
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" onclick="showPassword('senha')" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Mostrar Senha</label>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <a href="/" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Voltar</a>
+            <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Entrar</button>
+        </div>
+    </form>
+    
+    {% if request.query_params["status"] and request.query_params["status"] == "403" %}
+    <p class="lead">Seu perfil de usuário não tem autorização de acesso à página solicitada. Caso essa permissão seja necessária, entre em contato com o administrador do sistema.</p>
+    {% endif %}
+    
+    <p class="lead" style="color: #281915;">Ainda não criou sua conta?<br><a href="/novocliente" class="text-decoration-none" style="color: #EDE0D4;">Clique aqui</a> para criar uma conta agora!</p>
+{% else %}
+    <h3>Você já está logado.</h3>
+{% endif %}
+{% if erros and valores %}
+<script>
+    const validationErrors = {{ erros|tojson|safe }};
+    const fieldValues = {{ valores|tojson }};
+</script> 
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+
+<script>
+    function showPassword(id) {
+        var x = document.getElementById(id);
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+  <div class="header">
+    <h3>Dados de Perfil</h3>
+  </div>
+  <br>
+  <br>
+  <div class="container-fluid d-flex justify-content-center align-items-center vh-10">
+    <div class="p-4 rounded" style="background-color: #EDE0D4;">
+      <div class="row g-3 align-items-center">
+        <br>
+        <br>
+        <br>
+        <form action="endereco.py">
+          <hr class="hr1">
+            <h3>Olá, xxx!</h3>
+      </div>
+      <br>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="exampleFormControlInput1" class="col-form-label">Nome:</label>
+        </div>
+        <div class="col-auto">
+          <input type="bairro" id="exampleFormControlInput1" class="form-control" placeholder="José">
+        </div>
+      </div>
+      <br>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="exampleFormControlInput1" class="col-form-label">Email:</label>
+        </div>
+        <div class="col-auto">
+          <input type="bairro" id="exampleFormControlInput1" class="form-control" placeholder="jose@gmail.com">
+        </div>
+      </div>
+      <br>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="exampleFormControlInput1" class="col-form-label">Senha:</label>
+        </div>
+        <div class="col-auto">
+          <input type="bairro" id="exampleFormControlInput1" class="form-control" placeholder="exemplosenha123">
+        </div>
+      </div>
+      <br>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="exampleFormControlInput1" class="col-form-label">Número de Telefone:</label>
+        </div>
+        <div class="col-auto">
+          <input type="bairro" id="exampleFormControlInput1" class="form-control" placeholder="(00) 00000-0000">
+        </div>
+      </div>
+      <br>
+       <form action="endereco.py">
+          <hr class="hr1">
+          <br>
+          <button class="marrom_backgroud alinhar_ao centri btn btn-primary" type="submit" href="meiosdepagamento.html">Meios de Pagamento </button>
+          
+
+          <br>
+
+        </form>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

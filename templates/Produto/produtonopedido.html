@@ -1,0 +1,12 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Existem pedidos com esse produto!</h1>
+<hr>
+<p class="lead">
+    Não é possível excluir o produto. Existem pedidos associados a ele.
+    <br>
+    <br>
+    <a href="/produto/listagemprodutos" class="text-decoration-none" style="color: #EDE0D4;">Clique aqui</a> para voltar para a página de listagem dos produtos.
+</p>
+{% endblock %} 

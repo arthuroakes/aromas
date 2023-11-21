@@ -1,0 +1,71 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Funcionários Cadastrados</h1>
+    <a href="/admin/novofuncionario" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Novo Funcionário</a> 
+</div>
+<hr>
+{% if funcionarios|length == 0 %}
+<p>Não há funcionários cadastrados.</p>
+{% else %}
+<table class="table table-dark" style="border: 5px solid black;">
+    <thead>
+        <tr>
+            <th style="background-color: #4D2B1E; text-align: center;">ID do Funcionario</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Nome</th>            
+            <th style="background-color: #4D2B1E; text-align: center;">E-mail</th>
+            <th style="background-color: #4D2B1E; text-align: center;">CPF</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Telefone</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Salário</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Data de Nascimento</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Data de Admissão</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Data de Demissão</th>
+            <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for funcionario in funcionarios %}
+        <tr data-id="{{ funcionario.idUsuario }}">
+            <td class="table-warning" align="center">{{ funcionario.idUsuario }}</td>
+            <td class="table-warning" align="center">{{ funcionario.nome }}</td>
+            <td class="table-warning" align="center">{{ funcionario.email }}</td>
+            <td class="table-warning" align="center">{{ funcionario.cpf }}</td>
+            <td class="table-warning" align="center">{{ funcionario.telefone }}</td>
+            <td class="table-warning" align="center">{{ funcionario.salario }}</td>
+            <td class="table-warning" align="center">{{ funcionario.dataNascimento }}</td> 
+            <td class="table-warning" align="center">{{ funcionario.dataAdmissao }}</td>
+            <td class="table-warning" align="center">{{ funcionario.dataDemissao }}</td>
+            <td class="table-warning" align="center">
+                <a href="/funcionario/excluirfuncionario/{{ funcionario.idUsuario}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-trash"></i>
+                </a>
+
+                <a href="/funcionario/modificarfuncionario/{{ funcionario.idUsuario }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <i class="bi bi-pencil"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if totalPaginas > 1 %}
+<nav aria-label="...">
+    <ul class="pagination pagination-sm">
+      <!-- <li class="page-item {{ 'active' if paginaAtual == 1 }}" aria-current="page">
+        <a class="page-link" href="/cliente/listagemclientes?pa=1&tp={{ tamanhoPagina }}">1</a>
+      </li> -->
+      {% for i in range(1, totalPaginas + 1) %}
+      <li class="page-item">
+        <a class="page-link" style="background-color: #4D2B1E; color: #EDE0D4;" href="/funcionario/listagemfuncionarios?pa={{ i }}&tp={{ tamanhoPagina }}">{{ i }}</a>
+      </li>
+      {% endfor %}
+      <!-- <li class="page-item {{ 'active' if paginaAtual == totalPaginas }}" aria-current="page">
+        <a class="page-link" href="/Produto/listagemProduto?pa=totalPaginas&tp={{ tamanhoPagina }}">{{totalPaginas}}</a>
+      </li> -->
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+    <div class="header">
+        <h3 class="w-100 text-center">Como Deseja Obter o Produto?</h3>
+    </div>
+    <hr class="my-5">
+    <div class="row">
+        <div class="col-6 text-center">
+          <a href="/pedido/entrega" class="btn btn-lg" style="color: #EDE0D4; background-color: #4D2B1E">Quero que entregue em minha casa</a>
+        </div>
+        <div class="col-6 text-center">
+          <a href="/pedido/pagamento" class="btn btn-lg" style="color: #EDE0D4; background-color: #4D2B1E">Quero retirar na loja</a>
+        </div>
+    </div>    
+{% endblock %}
