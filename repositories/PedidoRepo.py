@@ -127,15 +127,13 @@ class PedidoRepo:
         return None
     
     @classmethod
-    def getPedidoByCliente(cls, idCliente: int) -> Pedido | None:
+    def getPedidosByCliente(cls, idCliente: int) -> Pedido:
         sql = "SELECT idPedido, idCliente, idFuncionario, idEndereco, formaPagamento, dataHora, status, observacao, tipoEntrega FROM pedido WHERE idCliente=? AND status IN ('pedido', 'aceito', 'entrega')" 
         conn = Database.createConnection()
         cursor = conn.cursor()
-        result = cursor.execute(sql, (idCliente,)).fetchone()
-        if result:
-            pedido = Pedido(*result)
-            return pedido
-        return None
+        result = cursor.execute(sql, (idCliente,)).fetchall()        
+        pedidos = [Pedido(*x) for x in result]
+        return pedidos
     
     @classmethod
     def getPedidoByStatus(cls, status: str) -> Pedido | None:
@@ -161,7 +159,7 @@ class PedidoRepo:
 
     @classmethod
     def obterPedidoPorId(cls, idPedido: int) -> Pedido | None:
-        sql = "SELECT idPedido, idCliente, idFuncionario, idEndereco, formaPagamento, status, tipoEntrega FROM pedido WHERE idPedido = ?"
+        sql = "SELECT idPedido, idCliente, idFuncionario, idEndereco, formaPagamento, status, tipoEntrega, dataHora FROM pedido WHERE idPedido = ?"
         conn = Database.createConnection()
         cursor = conn.cursor()
         resultado = cursor.execute(sql, (idPedido,)).fetchone()
@@ -171,10 +169,11 @@ class PedidoRepo:
                 idPedido=resultado[0],
                 idCliente=resultado[1],
                 idFuncionario=resultado[2],
-                idEndereco=resultado[3],
+                idEndereco=resultado[3],                
                 formaPagamento=resultado[4],
                 status=resultado[5],
                 tipoEntrega=resultado[6],
+                dataHora=resultado[7],
             )
             return objeto
         else:
@@ -318,7 +317,7 @@ class PedidoRepo:
         ]
         return objetos
     
-    def gerar_sequencia_numeros() -> str:
-        # Gera uma sequência de 4 números aleatórios
-        sequencia = ''.join(str(random.randint(0, 9)) for _ in range(4))
-        return sequencia
+    # def gerar_sequencia_numeros() -> str:
+    #     # Gera uma sequência de 4 números aleatórios
+    #     sequencia = ''.join(str(random.randint(0, 9)) for _ in range(4))
+    #     return sequencia 
