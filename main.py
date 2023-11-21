@@ -56,7 +56,7 @@ if CategoriaRepo.obterQtde() == 0:
   CategoriaRepo.inserirCategoriasBase()
 
 
-if __name__ == "__main__":
-  uvicorn.run(app="main:app", reload=True)
+# if __name__ == "__main__":
+#   uvicorn.run(app="main:app", reload=True) 
 
 ### esquecer senha precisa de enviar email, o que foge do escopo do técnico.
