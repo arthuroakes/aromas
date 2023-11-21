@@ -304,7 +304,7 @@ async def sobrenos(
 
 
 @router.get("/porcliente", response_class=HTMLResponse)
-async def pedido_andamento(
+async def acompanhar_pedido(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado)
 ):
     pedidos = PedidoRepo.getPedidosByCliente(usuario.idUsuario)    
