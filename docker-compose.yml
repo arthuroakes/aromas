@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   web:
-    container_name: aroma
+    container_name: aromas
     build: .
     ports:
       - "8103:8000"
