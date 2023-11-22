@@ -120,7 +120,7 @@ async def cadastrar_produto(
     nome: str = Form(...),
     preco: float = Form(...),
     descricao: str = Form(...),
-    qtdEstoque: int = Form(...),
+    qtdEstoque: str = Form(...), 
     emPromocao: str = Form(...),  # Modificamos para string
     dataLancamento: date = Form(...),
     arquivoImagem: UploadFile = File(...),
