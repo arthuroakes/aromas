@@ -128,7 +128,7 @@ class PedidoRepo:
     
     @classmethod
     def getPedidosByCliente(cls, idCliente: int) -> Pedido:
-        sql = "SELECT idPedido, idCliente, idFuncionario, idEndereco, formaPagamento, dataHora, status, observacao, tipoEntrega FROM pedido WHERE idCliente=? AND status IN ('pedido', 'aceito', 'entrega')" 
+        sql = "SELECT idPedido, idCliente, idFuncionario, idEndereco, formaPagamento, dataHora, status, observacao, tipoEntrega FROM pedido WHERE idCliente=? AND status IN ('Aguardando Aceitação', 'Pedido Aceito', 'Seu Pedido Saiu Para Entrega')" 
         conn = Database.createConnection()
         cursor = conn.cursor()
         result = cursor.execute(sql, (idCliente,)).fetchall()        

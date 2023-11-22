@@ -282,7 +282,7 @@ async def postPagamento(
     pedido = PedidoRepo.getPedidoByClienteByStatus(usuario.idUsuario, "carrinho")
     PedidoRepo.atualizarFormaPagamento(pedido.idPedido, formaPagamento)
     PedidoRepo.atualizarObservacao(pedido.idPedido, observacao)
-    PedidoRepo.atualizarStatus(pedido.idPedido, status="pedido")
+    PedidoRepo.atualizarStatus(pedido.idPedido, status="Aguardando Aceitação")
     return RedirectResponse("/pedido/sucesso", status.HTTP_302_FOUND)
 
 
@@ -336,8 +336,8 @@ async def pedido_andamento(
 async def get_aceitar_pedido(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado)
 ):
-    pedido = PedidoRepo.getPedidoByStatus("pedido")
-    PedidoRepo.atualizarStatus(pedido.idPedido, status="aceito")
+    pedido = PedidoRepo.getPedidoByStatus("Aguardando Aceitação")
+    PedidoRepo.atualizarStatus(pedido.idPedido, status="Pedido Aceito")
     PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
     return RedirectResponse("/pedido/listagempedidos", status.HTTP_302_FOUND)
 
@@ -346,8 +346,8 @@ async def get_aceitar_pedido(
 async def get_aceitar_pedido(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado)
 ):
-    pedido = PedidoRepo.getPedidoByStatus("aceito")
-    PedidoRepo.atualizarStatus(pedido.idPedido, status="entrega")
+    pedido = PedidoRepo.getPedidoByStatus("Pedido Aceito")
+    PedidoRepo.atualizarStatus(pedido.idPedido, status="Seu Pedido Saiu Para Entrega")
     PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
     return RedirectResponse("/pedido/listagempedidos", status.HTTP_302_FOUND)
 
