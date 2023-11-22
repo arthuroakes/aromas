@@ -7,7 +7,9 @@
 <hr class="my-5">
 <div class="row">
     {% if enderecos|length == 0 %}
-    <a href="/endereco/novoendereco" class="btn btn-lg" style="background-color: #4D2B1E; color: #EDE0D4;">Adicionar um endereço</a>
+    <div class="col-6 text-center">
+        <a href="/endereco/novoendereco" class="btn btn-lg" style="background-color: #4D2B1E; color: #EDE0D4;">Adicionar um endereço</a>
+    </div>
     {% else %}
     {% for e in enderecos: %}
     <div class="col-4">
