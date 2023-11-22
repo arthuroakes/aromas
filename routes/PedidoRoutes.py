@@ -313,7 +313,7 @@ async def acompanhar_pedido(
     pedidos = PedidoRepo.getPedidosByCliente(usuario.idUsuario)    
     return templates.TemplateResponse(
         "Pedido/pedidosCliente.html",
-        {"request": request, "usuario": usuario, "pedidos": pedidos, "qtdeItensCarrinho": qtdeItensCarrinho, "totalPaginas": 1, "paginaAtual": 1},
+        {"request": request, "usuario": usuario, "pedido": pedidos, "qtdeItensCarrinho": qtdeItensCarrinho, "totalPaginas": 1, "paginaAtual": 1},
     )
     
     
