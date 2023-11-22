@@ -194,6 +194,6 @@ async def post_excluir_endereco(
     idEndereco: int = Form(0),
 ):
     if EnderecoRepo.delete(idEndereco): 
-        return RedirectResponse("/endereco/listagemenderecos",status_code=status.HTTP_303_SEE_OTHER,)
+        return RedirectResponse("/cliente/meusenderecos",status_code=status.HTTP_303_SEE_OTHER,)
     else:
         raise Exception("Não foi possível excluir a categoria.")
