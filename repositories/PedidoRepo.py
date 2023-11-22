@@ -266,7 +266,7 @@ class PedidoRepo:
     @classmethod
     def obterPagina(cls, pagina: int, tamanhoPagina: int) -> List[Pedido]: 
         inicio = (pagina - 1) * tamanhoPagina 
-        sql = "SELECT idPedido, usuario.nome, idFuncionario, idEndereco, formaPagamento, dataHora, observacao, status, tipoEntrega FROM pedido INNER JOIN usuario ON pedido.idCliente = usuario.idUsuario WHERE status IN ('pedido', 'aceito') ORDER BY dataHora LIMIT ?, ?"
+        sql = "SELECT idPedido, usuario.nome, idFuncionario, idEndereco, formaPagamento, dataHora, observacao, status, tipoEntrega FROM pedido INNER JOIN usuario ON pedido.idCliente = usuario.idUsuario WHERE status IN ('Aguardando Aceitação', 'Pedido Aceito') ORDER BY dataHora LIMIT ?, ?"
         conn = Database.createConnection()
         cursor = conn.cursor()
         result = cursor.execute(sql, (inicio, tamanhoPagina)).fetchall()
