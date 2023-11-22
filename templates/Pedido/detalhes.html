@@ -21,15 +21,7 @@
           <tr>
             <td class="table-warning" align="center"><img src="/static/img/{{ item.idProduto|id_img }}.jpg" class="img-fluid" alt="Imagem do produto {{ item.nomeProduto }}" style="height: 59px;"></td>
             <td class="table-warning" align="center">{{item.nomeProduto}}</td>
-            <td class="table-warning" align="center">
-              <a href="/pedido/decrementar/{{ item.idProduto }}" class="btn btn-sm" style="color: #4D2B1E" title="Menos" data-bs-toggle="tooltip" data-bs-placement="left">
-                <i class="bi bi-dash-square-fill"></i>
-              </a>
-              {{item.quantidade}}
-              <a href="/pedido/incrementar/{{ item.idProduto }}" class="btn btn-sm" style="color: #4D2B1E" title="Mais" data-bs-toggle="tooltip" data-bs-placement="right">
-                <i class="bi bi-plus-square-fill"></i>
-              </a>
-            </td>
+            <td class="table-warning" align="center">{{item.quantidade}}</td>
             <td class="table-warning" align="center">{{item.valorUnitario}}</td>
           </tr>
       {% endfor %}
