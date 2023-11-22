@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th style="background-color: #4D2B1E; text-align: center;">ID</th>
-            <th style="background-color: #4D2B1E; text-align: center;">Número da Mesa</th>            
+            <th style="background-color: #4D2B1E; text-align: center;">Nome da Mesa</th>            
             <th style="background-color: #4D2B1E; text-align: center;">Quantidade de Assentos</th>
             <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
         </tr>
@@ -22,7 +22,7 @@
     {% for m in mesas %} 
         <tr data-id="{{ m.idMesa }}">
             <td class="table-warning" align="center">{{ m.idMesa }}</td>
-            <td class="table-warning" align="center">{{ m.numero }}</td>
+            <td class="table-warning" align="center">{{ m.nome }}</td>
             <td class="table-warning" align="center">{{ m.assentos }}</td>
             <td class="table-warning" align="center">
                 <!-- Botão para excluir mesa -->

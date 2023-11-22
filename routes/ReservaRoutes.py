@@ -48,9 +48,10 @@ async def listagem_reservas(
 async def getEditarReserva(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado), idReserva: int = Path()
 ): 
-    reserva = ReservaRepo.obterReservaPorId(idReserva) 
+    reserva = ReservaRepo.obterReservaPorId(idReserva)
+    mesas = MesaRepo.getAll()
     return templates.TemplateResponse(
-        "Reserva/editarReserva.html", {"request": request, "usuario": usuario, "reserva": reserva} 
+        "Reserva/editarReserva.html", {"request": request, "usuario": usuario, "reserva": reserva, "mesas": mesas} 
     )
 
 @router.post("/modificarreserva/{idReserva:int}", response_class=HTMLResponse)

@@ -17,6 +17,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from repositories.EnderecoRepo import EnderecoRepo
 from repositories.ItemRepo import ItemRepo
+from repositories.MesaRepo import MesaRepo
 from repositories.ProdutoRepo import ProdutoRepo
 from repositories.ReservaRepo import ReservaRepo
 from repositories.UsuarioRepo import UsuarioRepo
@@ -203,12 +204,13 @@ async def minhasreservas(
     tp: int = Query(10, description="Tamanho da página")
 ):
     reservas = ReservaRepo.obterReservaPorIdCliente(usuario.idUsuario, pa, tp)
-    totalPaginas = ReservaRepo.obterQtdeReservas(tp) 
+    totalPaginas = ReservaRepo.obterQtdeReservas(tp)
+    mesas = MesaRepo.getAll()
     qtdeItensCarrinho = 0
     if usuario and usuario.cliente:
         qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
     return templates.TemplateResponse(
-        "Reserva/listagemReserva.html", {"request": request, "usuario": usuario, "qtdeItensCarrinho": qtdeItensCarrinho, "reservas": reservas, "totalPaginas": totalPaginas, "paginaAtual": pa, "tamanhoPagina": tp}) 
+        "Reserva/listagemReserva.html", {"request": request, "usuario": usuario, "qtdeItensCarrinho": qtdeItensCarrinho, "reservas": reservas, "totalPaginas": totalPaginas, "paginaAtual": pa, "tamanhoPagina": tp, "mesas": mesas}) 
 
 
 @router.get("/excluircliente/{idUsuario:int}", response_class=HTMLResponse)

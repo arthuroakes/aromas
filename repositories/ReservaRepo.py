@@ -91,7 +91,7 @@ class ReservaRepo:
   @classmethod
   def obterReserva(cls, pagina: int, tamanhoPagina: int) -> List[Reserva]:
       inicio = (pagina - 1) * tamanhoPagina
-      sql = "SELECT idReserva, usuario.nome, mesa.numero, dataHoraCadastro, dataReserva, horaReserva, qtdPessoas FROM reserva INNER JOIN mesa ON reserva.idMesa = mesa.idMesa INNER JOIN usuario ON reserva.idCliente = usuario.idUsuario ORDER BY idReserva LIMIT ?, ?"
+      sql = "SELECT idReserva, usuario.nome, mesa.nome, dataHoraCadastro, dataReserva, horaReserva, qtdPessoas FROM reserva INNER JOIN mesa ON reserva.idMesa = mesa.idMesa INNER JOIN usuario ON reserva.idCliente = usuario.idUsuario ORDER BY idReserva LIMIT ?, ?"
       conn = Database.createConnection()
       cursor = conn.cursor()
       result = cursor.execute(sql, (inicio, tamanhoPagina)).fetchall()
@@ -152,7 +152,7 @@ class ReservaRepo:
   @classmethod
   def obterReservaPorIdCliente(cls, idUsuario: int, pagina: int, tamanhoPagina: int) -> List[Reserva]:
     inicio = (pagina - 1) * tamanhoPagina
-    sql = "SELECT idReserva, idUsuario, mesa.numero, dataHoraCadastro, dataReserva, horaReserva, qtdPessoas FROM reserva INNER JOIN mesa ON reserva.idMesa = mesa.idMesa INNER JOIN usuario ON reserva.idCliente = usuario.idUsuario WHERE idCliente = ? ORDER BY dataReserva LIMIT ?, ?"
+    sql = "SELECT idReserva, idUsuario, reserva.idMesa, mesa.nome as nomeMesa, dataHoraCadastro, dataReserva, horaReserva, qtdPessoas FROM reserva INNER JOIN mesa ON reserva.idMesa = mesa.idMesa INNER JOIN usuario ON reserva.idCliente = usuario.idUsuario WHERE idCliente = ? ORDER BY dataReserva LIMIT ?, ?"
     conexao = Database.createConnection()
     cursor = conexao.cursor()
     resultado = cursor.execute(sql, (idUsuario, inicio, tamanhoPagina)).fetchall()
@@ -161,10 +161,11 @@ class ReservaRepo:
           idReserva=x[0],
           idCliente=x[1],
           idMesa=x[2],
-          dataHoraCadastro=x[3],
-          dataReserva=x[4],
-          horaReserva=x[5],
-          qtdPessoas=x[6],
+          nomeMesa=x[3],
+          dataHoraCadastro=x[4],
+          dataReserva=x[5],
+          horaReserva=x[6],
+          qtdPessoas=x[7]          
         ) 
         for x in resultado
     ]

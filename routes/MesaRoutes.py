@@ -7,7 +7,7 @@ from models.Usuario import Usuario
 from repositories.ReservaRepo import ReservaRepo
 from util.templateFilters import (formatarData)
 from util.security import validar_usuario_logado
-from util.validators import is_not_empty
+from util.validators import is_greater_than, is_not_empty
 
 router = APIRouter(prefix="/mesa")
 templates = Jinja2Templates(directory="templates")
@@ -58,26 +58,27 @@ async def nova_mesa(request: Request, usuario: Usuario = Depends(validar_usuario
 @router.post("/novamesa")
 async def post_cadastrar_categoria(
     request: Request,
-    numero: str = Form(...),
-    assentos: str = Form(...), 
+    nome: str = Form(...),
+    assentos: int = Form(0), 
 ): 
     # Validação de dados
     erros = {}
     # Validação do campo numero
-    is_not_empty(numero, "numero", erros)
+    is_not_empty(nome, "nome", erros)
     # Validação do campo assento
-    is_not_empty(assentos, "assentos", erros) 
+    # is_not_empty(assentos, "assentos", erros)
+    is_greater_than(assentos, "assentos", 0, erros)
 
-    mesa_existente = MesaRepo.obterPorNumero(numero) 
-    if mesa_existente: 
-        return RedirectResponse(
-            f"/mesa/novamesa?error=A mesa com o número '{numero}' já existe.", 
-            status_code=status.HTTP_303_SEE_OTHER
-        ) 
+    # mesa_existente = MesaRepo.obterPorNumero(nome) 
+    # if mesa_existente: 
+    #     return RedirectResponse(
+    #         f"/mesa/novamesa?error=A mesa '{nome}' já existe.", 
+    #         status_code=status.HTTP_303_SEE_OTHER
+    #     ) 
 
     if len(erros) > 0:
         valores = {}
-        valores["numero"] = numero
+        valores["nome"] = nome
         valores["assentos"] = assentos
         return templates.TemplateResponse(
             "Reserva/novaMesa.html",
@@ -92,7 +93,7 @@ async def post_cadastrar_categoria(
     MesaRepo.insert(
         Mesa(
             idMesa=0, 
-            numero=numero,
+            nome=nome,
             assentos=assentos,
         )
     )
@@ -120,13 +121,13 @@ async def post_editar_mesa(
     request: Request,
     idMesa: int = Path(),
     usuario: Usuario = Depends(validar_usuario_logado),
-    numero: str = Form(...),
-    assentos: str = Form(...),
+    nome: str = Form(...),
+    assentos: int = Form(0),
 ):
     # Execute a lógica de edição de mesa aqui
     mesa = Mesa(
         idMesa=idMesa,  
-        numero=numero,
+        nome=nome,
         assentos=assentos
     )
     MesaRepo.update(mesa)

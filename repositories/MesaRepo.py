@@ -9,7 +9,7 @@ class MesaRepo:
         sql = """
             CREATE TABLE IF NOT EXISTS mesa (
             idMesa INTEGER PRIMARY KEY AUTOINCREMENT,
-            numero INTEGER,
+            nome TEXT NOT NULL UNIQUE,
             assentos INTEGER)
         """
         conn = Database.createConnection()
@@ -21,10 +21,10 @@ class MesaRepo:
     
     @classmethod
     def insert(cls, mesa: Mesa) -> Mesa:
-        sql = "INSERT INTO mesa (numero, assentos) VALUES (?, ?)"
+        sql = "INSERT INTO mesa (nome, assentos) VALUES (?, ?)"
         conn = Database.createConnection()
         cursor = conn.cursor()
-        result = cursor.execute(sql, (mesa.numero, mesa.assentos))
+        result = cursor.execute(sql, (mesa.nome, mesa.assentos))
         if (result.rowcount > 0):
             mesa.idMesa = result.lastrowid
             conn.commit()
@@ -36,10 +36,10 @@ class MesaRepo:
     
     @classmethod
     def update(cls, mesa: Mesa) -> Mesa:
-        sql = "UPDATE mesa SET numero=?, assentos=? WHERE idMesa=?"
+        sql = "UPDATE mesa SET nome=?, assentos=? WHERE idMesa=?"
         conn = Database.createConnection()
         cursor = conn.cursor()
-        result = cursor.execute(sql, (mesa.numero, mesa.assentos, mesa.idMesa))
+        result = cursor.execute(sql, (mesa.nome, mesa.assentos, mesa.idMesa))
         if (result.rowcount > 0):
             conn.commit()
             conn.close()
@@ -64,7 +64,7 @@ class MesaRepo:
         
     @classmethod
     def getAll(cls) -> List[Mesa]:
-        sql = "SELECT idMesa, numero, assentos FROM mesa"
+        sql = "SELECT idMesa, nome, assentos FROM mesa"
         conn = Database.createConnection()
         cursor = conn.cursor()
         result = cursor.execute(sql).fetchall()
@@ -73,7 +73,7 @@ class MesaRepo:
     
     @classmethod
     def getOne(cls, idMesa: int) -> Mesa:
-        sql = "SELECT idMesa, numero, assentos FROM mesa WHERE idMesa=?"
+        sql = "SELECT idMesa, nome, assentos FROM mesa WHERE idMesa=?"
         conn = Database.createConnection()
         cursor = conn.cursor()
         result = cursor.execute(sql, (idMesa,)).fetchone()
@@ -83,7 +83,7 @@ class MesaRepo:
     @classmethod
     def obterMesa(cls, pagina: int, tamanhoPagina: int) -> List[Mesa]:
         inicio = (pagina - 1) * tamanhoPagina
-        sql = "SELECT idMesa, numero, assentos FROM mesa ORDER BY idMesa LIMIT ?, ?"
+        sql = "SELECT idMesa, nome, assentos FROM mesa ORDER BY idMesa LIMIT ?, ?"
         conexao = Database.createConnection()
         cursor = conexao.cursor()
         resultado = cursor.execute(sql, (inicio, tamanhoPagina)).fetchall()
@@ -99,20 +99,20 @@ class MesaRepo:
         return int(resultado[0])
     
     @classmethod
-    def obterPorNumero(cls, numero: str) -> Mesa:
-        sql = "SELECT * FROM mesa WHERE numero = ?"
+    def obterPorNome(cls, nome: str) -> Mesa:
+        sql = "SELECT * FROM mesa WHERE nome = ?"
         conn = Database.createConnection()
         cursor = conn.cursor()
-        resultado = cursor.execute(sql, (numero,)).fetchone()
+        resultado = cursor.execute(sql, (nome,)).fetchone()
         conn.close()
         if resultado:
-            return Mesa(idMesa=resultado[0], numero=resultado[1], assentos=resultado[2]) 
+            return Mesa(idMesa=resultado[0], nome=resultado[1], assentos=resultado[2]) 
         else:
             return None
         
     @classmethod
     def obterMesaPorId(cls, idMesa: int) -> Mesa | None:
-        sql = "SELECT idMesa, numero, assentos FROM mesa WHERE idMesa = ?"
+        sql = "SELECT idMesa, nome, assentos FROM mesa WHERE idMesa = ?"
         conn = Database.createConnection() 
         cursor = conn.cursor()
         resultado = cursor.execute(sql, (idMesa,)).fetchone()
@@ -120,7 +120,7 @@ class MesaRepo:
         if resultado:
             objeto = Mesa(
                 idMesa=resultado[0],
-                numero=resultado[1],
+                nome=resultado[1],
                 assentos=resultado[2]
             )
             return objeto

@@ -11,4 +11,5 @@ class Reserva:
   dataReserva: date
   horaReserva: int
   qtdPessoas: int
-  dataHoraCadastro: Optional[datetime] = datetime.now() 
+  dataHoraCadastro: Optional[datetime] = datetime.now()
+  nomeMesa: Optional[str] = ""

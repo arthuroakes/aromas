@@ -3,7 +3,7 @@
 {% block conteudo %}
 <h1>Exclusão de Mesa</h1>
 <hr>
-<p class="lead">Deseja realmente excluir essa mesa <b>{{ mesa.numero }}</b>? </p>
+<p class="lead">Deseja realmente excluir essa mesa <b>{{ mesa.nome }}</b>? </p>
 <form action="/mesa/excluirmesa" method="post">
     <input type="hidden" name="idMesa" value="{{ mesa.idMesa }}">
     <div class="mb-3">
