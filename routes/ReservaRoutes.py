@@ -53,6 +53,29 @@ async def getEditarReserva(
         "Reserva/editarReserva.html", {"request": request, "usuario": usuario, "reserva": reserva} 
     )
 
+@router.post("/modificarreserva/{idReserva:int}", response_class=HTMLResponse)
+async def post_editar_reserva(
+    request: Request,
+    idReserva: int = Path(),
+    usuario: Usuario = Depends(validar_usuario_logado),
+    idMesa: int = Form(0),
+    dataReserva: date = Form(...),
+    horaReserva: str = Form(...), 
+    qtdPessoas: int = Form(...),
+):
+    # Execute a lógica de edição de reserva aqui
+    reserva = Reserva(
+        idReserva=idReserva,
+        idMesa=idMesa,
+        dataReserva=dataReserva,
+        horaReserva=horaReserva,
+        qtdPessoas=qtdPessoas
+    )
+    ReservaRepo.update(reserva)
+
+    # Redirecione de volta para a página de detalhes da reserva após a edição
+    return RedirectResponse("/reserva/listagemreservas", status_code=status.HTTP_303_SEE_OTHER)
+
 @router.get("/novareserva", response_class=HTMLResponse)
 async def get_nova_reserva(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
     mesas = MesaRepo.getAll() 
