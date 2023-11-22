@@ -117,7 +117,7 @@ async def postNovoEndereco(
         # Insira o cliente no banco de dados
         novo_endereco = EnderecoRepo.insert(novo_endereco) 
 
-    return RedirectResponse("/endereco/listagemenderecos", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse("/cliente/meusenderecos", status_code=status.HTTP_303_SEE_OTHER)
 
 # Rota para editar um produto
 @router.get("/modificarendereco/{idEndereco:int}", response_class=HTMLResponse)
