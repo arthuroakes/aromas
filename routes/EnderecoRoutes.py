@@ -166,7 +166,7 @@ async def post_editar_endereco(
     EnderecoRepo.update(endereco) 
 
     # Redirecione de volta para a página de detalhes do endereco após a edição
-    return RedirectResponse("/endereco/listagemenderecos", status_code=status.HTTP_303_SEE_OTHER) 
+    return RedirectResponse("/cliente/meusenderecos", status_code=status.HTTP_303_SEE_OTHER) 
 
 @router.get("/excluirendereco/{idEndereco:int}", response_class=HTMLResponse)
 async def get_excluir_categoria(
