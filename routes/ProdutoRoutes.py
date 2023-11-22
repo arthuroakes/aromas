@@ -217,7 +217,7 @@ async def post_editar_produto(
     nome: str = Form(...),
     preco: float = Form(...),
     descricao: str = Form(...),
-    qtdEstoque: int = Form(...),
+    qtdEstoque: str = Form(...),
     emPromocao: str = Form(...),
     dataLancamento: str = Form(...),
 ):
