@@ -51,7 +51,7 @@
         <select class="form-select" id="idMesa" name="idMesa" style="background-color: #4D2B1E; color: #EDE0D4;">
             <option value="" disabled selected>Escolha uma Mesa</option>
             {% for m in mesas: %} 
-            <option value="{{ m.idMesa }}">{{ m.numero }}</option>\ 
+            <option value="{{ m.idMesa }}">{{ m.nome }}</option>\ 
             {% endfor %}
         </select>
         <label for="idMesa" style="color: #EDE0D4;">Escolha a Mesa</label> 
