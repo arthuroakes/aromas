@@ -16,7 +16,7 @@ def validar_usuario_logado(request: Request) -> Usuario | None:
         usuario = UsuarioRepo.obterUsuarioPorToken(token)
         if usuario:
             usuario.funcionario = FuncionarioRepo.existeId(usuario.idUsuario)
-            usuario.cliente = ClienteRepo.existeId(usuario.idUsuario)
+            usuario.cliente = ClienteRepo.existeId(usuario.idUsuario) 
         return usuario
     except KeyError:
         return None    

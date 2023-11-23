@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 from models.Categoria import Categoria
 from models.Cliente import Cliente
 from models.Produto import Produto
-from fastapi import HTTPException
+from fastapi import HTTPException 
 from repositories.CategoriaRepo import CategoriaRepo
 from repositories.ClienteRepo import ClienteRepo
 from util.imageUtil import transformar_em_quadrada
