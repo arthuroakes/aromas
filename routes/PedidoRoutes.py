@@ -58,7 +58,7 @@ async def listagemPedidos(
 async def listagemPedidos(
     request: Request,
     pa: int = Query(1, description="Página atual"),
-    tp: int = Query(5, description="Tamanho da página"),
+    tp: int = Query(10, description="Tamanho da página"),
     usuario: Usuario = Depends(validar_usuario_logado),
 ):
     pedidos = PedidoRepo.obterPedidos(pa, tp)
@@ -310,7 +310,7 @@ async def acompanhar_pedido(
     qtdeItensCarrinho = 0
     if usuario and usuario.cliente:
         qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
-    pedidos = PedidoRepo.getPedidosByCliente(usuario.idUsuario)    
+    pedidos = PedidoRepo.obterPaginaPedidosporCliente(usuario.idUsuario, 1, 5)    
     return templates.TemplateResponse(
         "Pedido/pedidosCliente.html",
         {"request": request, "usuario": usuario, "pedidos": pedidos, "qtdeItensCarrinho": qtdeItensCarrinho, "totalPaginas": 1, "paginaAtual": 1},

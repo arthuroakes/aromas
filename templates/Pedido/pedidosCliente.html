@@ -15,7 +15,7 @@
             <th style="background-color: #4D2B1E; text-align: center;">Observação</th>
             <th style="background-color: #4D2B1E; text-align: center;">Data e Hora do Pedido</th>
             <th style="background-color: #4D2B1E; text-align: center;">Status do Pedido</th>  
-            <th style="background-color: #4D2B1E; text-align: center;">Tipo de Entrega</th>
+            <!-- <th style="background-color: #4D2B1E; text-align: center;">Tipo de Entrega</th> -->
             <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
         </tr>
     </thead>
@@ -26,7 +26,7 @@
             <td class="table-warning" align="center">{{ pedido.observacao }}</td> 
             <td class="table-warning" align="center">{{ pedido.dataHora }}</td>
             <td class="table-warning" align="center">{{ pedido.status }}</td> 
-            <td class="table-warning" align="center">{{ pedido.tipoEntrega }}</td> 
+            <!-- <td class="table-warning" align="center">{{ pedido.tipoEntrega }}</td>  -->
             <td class="table-warning" align="center">                
                 <a href="/pedido/detalhes/{{ pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Detalhes do Pedido" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-list"></i>

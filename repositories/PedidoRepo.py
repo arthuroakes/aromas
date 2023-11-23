@@ -136,6 +136,29 @@ class PedidoRepo:
         return pedidos
     
     @classmethod
+    def obterPaginaPedidosporCliente(cls, idCliente: int, pagina: int, tamanhoPagina: int) -> List[Pedido]:
+        inicio = (pagina - 1) * tamanhoPagina
+        sql = "SELECT idPedido, idCliente, idFuncionario, idEndereco, formaPagamento, dataHora, status, observacao, tipoEntrega FROM pedido WHERE idCliente=? AND status IN ('Aguardando Aceitação', 'Pedido Aceito', 'Seu Pedido Saiu Para Entrega') LIMIT ?, ?"
+        conn = Database.createConnection()
+        cursor = conn.cursor()
+        result = cursor.execute(sql, (idCliente, inicio, tamanhoPagina)).fetchall()
+        objetos = [
+            Pedido(
+                idPedido=x[0],
+                idCliente=x[1],
+                idFuncionario=x[2],
+                idEndereco=x[3],
+                formaPagamento=x[4],
+                dataHora=x[5],
+                status=x[6],
+                observacao=x[7],
+                tipoEntrega=x[8],
+            )
+            for x in result
+        ]
+        return objetos
+    
+    @classmethod
     def getPedidoByStatus(cls, status: str) -> Pedido | None:
         sql = "SELECT idPedido, idCliente, idFuncionario, idEndereco, formaPagamento, dataHora, status, observacao, tipoEntrega FROM pedido WHERE status=?"
         conn = Database.createConnection()
