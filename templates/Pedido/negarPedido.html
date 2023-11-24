@@ -1,0 +1,23 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<h1>Negar Pedido</h1> 
+<hr>
+<p class="lead">
+    Descreva abaixo por que o pedido está sendo negado.
+</p>
+<form method="post">
+
+    <div class="form-floating mb-3">
+        <textarea type="text" class="form-control" id="observacao" name="observacao" placeholder="Digite aqui o motivo" autofocus style="color: white; background-color: #4D2B1E;"> </textarea>
+        <label for="observacao" style="color: #EDE0D4;">Escreva Aqui</label>
+        <span class="text-danger d-none small"></span>
+    </div>
+  
+    <div class="mb-3">
+        <a href="/pedido/listagempedidos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+    </div>
+</form>
+
+{% endblock %} 

@@ -1,14 +1,5 @@
 import datetime
-from fastapi import (
-    APIRouter,
-    Depends,
-    Query,
-    Request,
-    Form,
-    HTTPException,
-    status,
-    Path,
-)
+from fastapi import (APIRouter, Depends, Query, Request, Form, HTTPException, status, Path)
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from models.Item import Item
@@ -33,10 +24,10 @@ async def startup_event():
 
 
 @router.get("/listagempedidos", response_class=HTMLResponse)
-async def listagemPedidos(
+async def listagem_Pedidos_Funcionario(
     request: Request,
     pa: int = Query(1, description="Página atual"),
-    tp: int = Query(5, description="Tamanho da página"),
+    tp: int = Query(4, description="Tamanho da página"),
     usuario: Usuario = Depends(validar_usuario_logado),
 ):
     pedidos = PedidoRepo.obterPagina(pa, tp)
@@ -55,7 +46,7 @@ async def listagemPedidos(
 
 
 @router.get("/listagemtodospedidos", response_class=HTMLResponse)
-async def listagemPedidos(
+async def listagem_Pedidos_Admin(
     request: Request,
     pa: int = Query(1, description="Página atual"),
     tp: int = Query(10, description="Tamanho da página"),
@@ -64,7 +55,7 @@ async def listagemPedidos(
     pedidos = PedidoRepo.obterPedidos(pa, tp)
     totalPaginas = PedidoRepo.obterQtdePaginas(tp)
     return templates.TemplateResponse(
-        "Pedido/listagemPedido.html",
+        "Pedido/listagemPedidos.html",
         {
             "request": request,
             "pedidos": pedidos,
@@ -305,15 +296,28 @@ async def sobrenos(
 
 @router.get("/porcliente", response_class=HTMLResponse)
 async def acompanhar_pedido(
-    request: Request, usuario: Usuario = Depends(validar_usuario_logado)
+    request: Request, 
+    usuario: Usuario = Depends(validar_usuario_logado),
+    pa: int = Query(1, description="Página atual"),
+    tp: int = Query(5, description="Tamanho da página"),
 ):
     qtdeItensCarrinho = 0
-    if usuario and usuario.cliente:
-        qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
-    pedidos = PedidoRepo.obterPaginaPedidosporCliente(usuario.idUsuario, 1, 5)    
-    return templates.TemplateResponse(
-        "Pedido/pedidosCliente.html",
-        {"request": request, "usuario": usuario, "pedidos": pedidos, "qtdeItensCarrinho": qtdeItensCarrinho, "totalPaginas": 1, "paginaAtual": 1},
+    if usuario:  
+        if usuario.cliente:
+            qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
+            pedidos = PedidoRepo.obterPaginaPedidosporCliente(usuario.idUsuario, pa, tp) 
+            totalPaginas = PedidoRepo.obterQtdePaginas(tp)   
+            return templates.TemplateResponse(
+                "Pedido/pedidosCliente.html",
+                {
+                    "request": request, 
+                    "usuario": usuario, 
+                    "pedidos": pedidos, 
+                    "qtdeItensCarrinho": qtdeItensCarrinho, 
+                    "totalPaginas": totalPaginas, 
+                    "paginaAtual": pa,
+                    "tamanhoPagina": tp
+                },
     )
     
     
@@ -341,6 +345,23 @@ async def get_aceitar_pedido(
     PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
     return RedirectResponse("/pedido/listagempedidos", status.HTTP_302_FOUND)
 
+@router.get("/negarpedido", response_class=HTMLResponse)
+async def reserva(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
+    return templates.TemplateResponse(
+        "Pedido/negarPedido.html", {"request": request, "usuario": usuario}
+    )
+
+# @router.post("/negarpedido", response_class=RedirectResponse)
+# async def postNegarPedido(
+#     request: Request,
+#     usuario: Usuario = Depends(validar_usuario_logado),
+#     observacao: str = Form(...)
+# ):
+#     if usuario and usuario.cliente:
+#         pedido = PedidoRepo.getPedidoByClienteByStatus(usuario.idUsuario, "carrinho")
+#         PedidoRepo.atualizarObservacao(pedido.idPedido, observacao)
+#         PedidoRepo.atualizarStatus(pedido.idPedido, status="Aguardando Aceitação")
+#     return RedirectResponse("/pedido/sucesso", status.HTTP_302_FOUND) 
 
 @router.get("/entregapedido", response_class=HTMLResponse)
 async def get_aceitar_pedido(
