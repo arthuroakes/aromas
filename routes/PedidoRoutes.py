@@ -336,51 +336,63 @@ async def pedido_andamento(
     )
 
 
-@router.get("/aceitarpedido", response_class=HTMLResponse)
+@router.get("/aceitarpedido/{idPedido:int}", response_class=HTMLResponse)
 async def get_aceitar_pedido(
-    request: Request, usuario: Usuario = Depends(validar_usuario_logado)
+    request: Request, 
+    usuario: Usuario = Depends(validar_usuario_logado),
+    idPedido: int = Path()
 ):
-    pedido = PedidoRepo.getPedidoByStatus("Aguardando Aceitação")
-    PedidoRepo.atualizarStatus(pedido.idPedido, status="Pedido Aceito")
-    PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
-    return RedirectResponse("/pedido/listagempedidos", status.HTTP_302_FOUND)
+    pedido = PedidoRepo.getOne(idPedido)
+    if pedido.status == "Aguardando Aceitação":
+        PedidoRepo.atualizarStatus(idPedido, status="Pedido Aceito")
+        PedidoRepo.atualizaridFuncionario(idPedido, usuario.idUsuario)
+    return RedirectResponse("/pedido/listagempedidos", status_code=302) 
 
-@router.get("/negarpedido", response_class=HTMLResponse)
-async def reserva(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
+@router.get("/negarpedido/{idPedido:int}", response_class=HTMLResponse)
+async def get_negar_pedido(
+    request: Request, 
+    usuario: Usuario = Depends(validar_usuario_logado),
+    idPedido: int = Path()
+):
+    pedido = PedidoRepo.getOne(idPedido) 
     return templates.TemplateResponse(
-        "Pedido/negarPedido.html", {"request": request, "usuario": usuario}
+        "Pedido/negarPedido.html", {"request": request, "usuario": usuario, "pedido": pedido}
     )
 
-# @router.post("/negarpedido", response_class=RedirectResponse)
-# async def postNegarPedido(
-#     request: Request,
-#     usuario: Usuario = Depends(validar_usuario_logado),
-#     observacao: str = Form(...)
-# ):
-#     if usuario and usuario.cliente:
-#         pedido = PedidoRepo.getPedidoByClienteByStatus(usuario.idUsuario, "carrinho")
-#         PedidoRepo.atualizarObservacao(pedido.idPedido, observacao)
-#         PedidoRepo.atualizarStatus(pedido.idPedido, status="Aguardando Aceitação")
-#     return RedirectResponse("/pedido/sucesso", status.HTTP_302_FOUND) 
+@router.post("/negarpedido/{idPedido:int}", response_class=RedirectResponse)
+async def post_negar_pedido( 
+    request: Request,
+    usuario: Usuario = Depends(validar_usuario_logado),
+    idPedido: int = Path(), 
+    observacao: str = Form(...)
+):
+    pedido = PedidoRepo.getOne(idPedido)
+    PedidoRepo.atualizarObservacao(idPedido, observacao)
+    PedidoRepo.atualizarStatus(idPedido, "Pedido Negado")
+    PedidoRepo.atualizaridFuncionario(idPedido, usuario.idUsuario)
+    return RedirectResponse("/pedido/listagempedidos", status.HTTP_302_FOUND)  
 
-@router.get("/entregapedido", response_class=HTMLResponse)
+@router.get("/entregapedido/{idPedido:int}", response_class=HTMLResponse)
 async def get_aceitar_pedido(
-    request: Request, usuario: Usuario = Depends(validar_usuario_logado)
+    request: Request, 
+    usuario: Usuario = Depends(validar_usuario_logado),
+    idPedido: int = Path() 
 ):
-    pedido = PedidoRepo.getPedidoByStatus("Pedido Aceito")
-    PedidoRepo.atualizarStatus(pedido.idPedido, status="Seu Pedido Saiu Para Entrega")
-    PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
-    return RedirectResponse("/pedido/listagempedidos", status.HTTP_302_FOUND)
+    pedido = PedidoRepo.getOne(idPedido)
+    if pedido.status == "Pedido Aceito":
+        PedidoRepo.atualizarStatus(idPedido, status="Seu Pedido Saiu Para Entrega")
+        PedidoRepo.atualizaridFuncionario(idPedido, usuario.idUsuario)
+    return RedirectResponse("/pedido/listagempedidos", status_code=302)
 
 
-@router.get("/pedidoentregue", response_class=HTMLResponse)
-async def get_pedido_entregue(
-    request: Request, usuario: Usuario = Depends(validar_usuario_logado)
-):
-    pedido = PedidoRepo.getPedidoByStatus("entrega")
-    PedidoRepo.atualizarStatus(pedido.idPedido, status="entregue")
-    PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
-    return RedirectResponse("/pedido/andamento", status.HTTP_302_FOUND)
+# @router.get("/pedidoentregue", response_class=HTMLResponse)
+# async def get_pedido_entregue(
+#     request: Request, usuario: Usuario = Depends(validar_usuario_logado)
+# ):
+#     pedido = PedidoRepo.getPedidoByStatus("entrega")
+#     PedidoRepo.atualizarStatus(pedido.idPedido, status="entregue")
+#     PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
+#     return RedirectResponse("/pedido/andamento", status.HTTP_302_FOUND)
 
 
 @router.get("/motivocancelar", response_class=HTMLResponse)
