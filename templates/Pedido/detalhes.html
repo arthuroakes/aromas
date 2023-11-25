@@ -27,8 +27,8 @@
       {% endfor %}
       </tbody>
       </table>
-        <a href="/pedido/porcliente" class="btn" style="color: #EDE0D4; background-color: #4D2B1E" title="Pedidos Realizados" data-bs-toggle="tooltip" data-bs-placement="left">
-          <i class="bi bi-arrow-left"></i> Voltar para Pedidos Realizados
+        <a {% if usuario.cliente %} href="/pedido/porcliente" {% else %} href="/pedido/listagempedidos" {% endif %} class="btn" style="color: #EDE0D4; background-color: #4D2B1E" title="Pedidos Realizados" data-bs-toggle="tooltip" data-bs-placement="left">
+          <i class="bi bi-arrow-left"></i> {% if usuario.cliente %} Voltar para Pedidos Realizados {% else %} Voltar para Listagem de Pedidos {% endif %}
         </a>        
   {% else %}
   <hr>
