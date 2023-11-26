@@ -1,11 +1,12 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
 <h1>Novo Endereço</h1>
 <hr>
 <form method="post">
 <div class="form-floating mb-3">
-    <select class="form-select" id="uf" name="uf" autofocus style="color: white; background-color: #4D2B1E;">
+    <select class="form-select" id="uf" name="uf" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <option value="" selected disabled></option>
         <!-- <option value="AC">AC</option>
         <option value="AL">AL</option>
@@ -40,7 +41,7 @@
 </div>
   
     <div class="form-floating mb-3">
-        <select class="form-select" id="cidade" name="cidade" style="color: white; background-color: #4D2B1E;">
+        <select class="form-select" id="cidade" name="cidade" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
             <!-- Opções de cidades aqui -->
         </select>
         <label for="cidade" style="color: #EDE0D4;">Cidade</label>
@@ -48,40 +49,41 @@
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o nome do seu bairro" autofocus style="color: white; background-color: #4D2B1E;">
+        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o nome do seu bairro" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="bairro" style="color: #EDE0D4;">Bairro</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="rua" name="rua" placeholder="Digite o nome da sua rua" autofocus style="color: white; background-color: #4D2B1E;">
+        <input type="text" class="form-control" id="rua" name="rua" placeholder="Digite o nome da sua rua" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="rua" style="color: #EDE0D4;">Rua</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="numero" name="numero" placeholder="Digite o número da sua casa" autofocus style="color: white; background-color: #4D2B1E;">
+      <input type="text" class="form-control" id="numero" name="numero" placeholder="Digite o número da sua casa" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
       <label for="numero" style="color: #EDE0D4;">Número</label>
       <span class="text-danger d-none small"></span>
   </div>
   
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite o CEP da sua rua" autofocus style="color: white; background-color: #4D2B1E;">
+        <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite o CEP da sua rua" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="cep" style="color: #EDE0D4;">CEP</label>
         <span class="text-danger d-none small"></span>
     </div>
     
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Digite o complemento" autofocus style="color: white; background-color: #4D2B1E;">
+        <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Digite o complemento" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="complemento" style="color: #EDE0D4;">Complemento</label>
         <span class="text-danger d-none small"></span>
     </div>
   
     <div class="mb-3">
-        <a href="/cliente/meusenderecos" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+        <a href="/cliente/meusenderecos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;" type="submit">Salvar</button>
     </div>
 </form>
+</div>
 
 <script>
 function carregarCidades(ufSelecionado) {

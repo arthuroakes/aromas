@@ -3,6 +3,7 @@ from fastapi import (APIRouter, Depends, Query, Path, Request, Form, HTTPExcepti
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from models.Reserva import Reserva
+from repositories.ItemRepo import ItemRepo
 from repositories.MesaRepo import MesaRepo
 from models.Usuario import Usuario
 from repositories.ReservaRepo import ReservaRepo
@@ -48,10 +49,13 @@ async def listagem_reservas(
 async def getEditarReserva(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado), idReserva: int = Path()
 ): 
+    qtdeItensCarrinho = 0
+    if usuario and usuario.cliente:
+        qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
     reserva = ReservaRepo.obterReservaPorId(idReserva)
     mesas = MesaRepo.getAll()
     return templates.TemplateResponse(
-        "Reserva/editarReserva.html", {"request": request, "usuario": usuario, "reserva": reserva, "mesas": mesas} 
+        "Reserva/editarReserva.html", {"request": request, "usuario": usuario, "reserva": reserva, "mesas": mesas, "qtdeItensCarrinho": qtdeItensCarrinho} 
     )
 
 @router.post("/modificarreserva/{idReserva:int}", response_class=HTMLResponse)
@@ -79,9 +83,12 @@ async def post_editar_reserva(
 
 @router.get("/novareserva", response_class=HTMLResponse)
 async def get_nova_reserva(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
+    qtdeItensCarrinho = 0 
+    if usuario and usuario.cliente:
+        qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
     mesas = MesaRepo.getAll() 
     return templates.TemplateResponse(
-        "Reserva/novaReserva.html", {"request": request, "usuario": usuario, "mesas": mesas} 
+        "Reserva/novaReserva.html", {"request": request, "usuario": usuario, "mesas": mesas, "qtdeItensCarrinho": qtdeItensCarrinho} 
     )
 
 @router.post("/novareserva", response_class=HTMLResponse)

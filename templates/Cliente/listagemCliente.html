@@ -34,12 +34,12 @@
             <td class="table-warning" align="center">{{ c.pontuacao }}</td>
             <td class="table-warning" align="center">
                 {% if usuario.admin: %}
-                <a href="/cliente/excluircliente/{{ c.idUsuario }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/cliente/excluircliente/{{ c.idUsuario }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-trash"></i>
                 </a>
                 {% endif %}
                 <!-- Botão para editar produto -->
-                <a href="/cliente/modificarcliente/{{ c.idUsuario }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/cliente/modificarcliente/{{ c.idUsuario }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-pencil-square"></i>
                 </a>
             </td>

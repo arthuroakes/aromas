@@ -365,7 +365,7 @@ async def getAlterarSenha(
         if usuario and usuario.cliente:
             qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
         return templates.TemplateResponse(
-            "Cliente/alterarSenha.html", {"request": request, "usuario": usuario, "qtdeItensCarrinho": qtdeItensCarrinho}
+            "Main/alterarSenha.html", {"request": request, "usuario": usuario, "qtdeItensCarrinho": qtdeItensCarrinho}
         )
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
@@ -405,7 +405,7 @@ async def postAlterarSenha(
     if len(erros) > 0:
         valores = {}        
         return templates.TemplateResponse(
-            "Cliente/alterarSenha.html",
+            "Main/alterarSenha.html",
             {
                 "request": request,
                 "usuario": usuario,                

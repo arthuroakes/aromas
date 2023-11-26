@@ -3,7 +3,7 @@
 {% block conteudo %}
 <div class="d-flex justify-content-between align-items-center">
     <h1>Funcionários Cadastrados</h1>
-    <a href="/admin/novofuncionario" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Novo Funcionário</a> 
+    <a href="/admin/novofuncionario" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Novo Funcionário</a> 
 </div>
 <hr>
 {% if funcionarios|length == 0 %}
@@ -37,11 +37,15 @@
             <td class="table-warning" align="center">{{ funcionario.dataAdmissao }}</td>
             <td class="table-warning" align="center">{{ funcionario.dataDemissao }}</td>
             <td class="table-warning" align="center">
-                <a href="/funcionario/excluirfuncionario/{{ funcionario.idUsuario}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/funcionario/demitirfuncionario/{{ funcionario.idUsuario}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Demitir" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <i class="bi bi-backspace-reverse-fill"></i>
+                </a>
+
+                <a href="/funcionario/excluirfuncionario/{{ funcionario.idUsuario}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-trash"></i>
                 </a>
 
-                <a href="/funcionario/modificarfuncionario/{{ funcionario.idUsuario }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="/funcionario/modificarfuncionario/{{ funcionario.idUsuario }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Editar" data-bs-toggle="tooltip" data-bs-placement="right">
                     <i class="bi bi-pencil"></i>
                 </a>
             </td>

@@ -1,0 +1,30 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
+<h1>Demitir Funcionário</h1> 
+<hr>
+<p class="lead">
+</p>
+<form method="post">
+
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dataDemissao" name="dataDemissao" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
+        <label for="dataDemissao" style="color: #EDE0D4;">Data de Demissão</label>
+        <span class="text-danger d-none small"></span>
+    </div> 
+
+    <div class="mb-3">
+        <a href="/funcionario/listagemfuncionarios" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 20px;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 20px;">Demitir</button>
+    </div>
+</div>
+
+{% if erros and valores: %}
+<script>
+    const validationErrors = {{ erros|tojson }};
+    const fieldValues = {{ valores|tojson }};
+</script> 
+<script src="/static/js/formValidation.js"></script>
+{% endif %}
+{% endblock %}

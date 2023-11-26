@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: auto;">
 <h1>Negar Pedido</h1> 
 <hr>
 <p class="lead">
@@ -9,15 +10,16 @@
 <form method="post">
 
     <div class="form-floating mb-3">
-        <textarea type="text" class="form-control" id="observacao" name="observacao" placeholder="Digite aqui o motivo" autofocus style="color: white; background-color: #4D2B1E;"> </textarea>
+        <textarea type="text" class="form-control" id="observacao" name="observacao" placeholder="Digite aqui o motivo" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;"> </textarea>
         <label for="observacao" style="color: #EDE0D4;">Escreva Aqui</label>
         <span class="text-danger d-none small"></span>
     </div>
   
     <div class="mb-3">
-        <a href="/pedido/listagempedidos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+        <a href="/pedido/listagempedidos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;" type="submit">Salvar</button>
     </div>
 </form>
+</div>
 
 {% endblock %} 

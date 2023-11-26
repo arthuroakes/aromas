@@ -182,3 +182,17 @@ class FuncionarioRepo:
           return objeto
       else:
           return None
+        
+  @classmethod
+  def atualizardataDemissao(cls, idFuncionario: int, dataDemissao: str) -> bool: 
+      sql = "UPDATE funcionario SET dataDemissao=? WHERE idFuncionario=?"
+      conn = Database.createConnection()
+      cursor = conn.cursor()
+      result = cursor.execute(sql, (idFuncionario, dataDemissao))
+      if result.rowcount > 0:
+          conn.commit()
+          conn.close()
+          return True
+      else:
+          conn.close()
+          return False

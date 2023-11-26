@@ -3,7 +3,7 @@
 {% block conteudo %}
 <div class="d-flex justify-content-between align-items-center">
     <h1>Endereços Cadastrados</h1>
-    <a href="/endereco/novoendereco" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Novo Endereço</a>
+    <a href="/endereco/novoendereco" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Novo Endereço</a>
 </div>
 <hr>
 {% if enderecos|length == 0 %}
@@ -33,10 +33,10 @@
                 <td class="table-warning" align="center">{{ endereco.cep }}</td>
                 <td class="table-warning" align="center">{{ endereco.complemento }}</td>
                 <td class="table-warning" align="center">
-                    <a href="/endereco/excluirendereco/{{ endereco.idEndereco }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <a href="/endereco/excluirendereco/{{ endereco.idEndereco }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
                         <i class="bi bi-trash-fill"></i> 
                     </a>
-                    <a href="/endereco/modificarendereco/{{ endereco.idEndereco }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+                    <a href="/endereco/modificarendereco/{{ endereco.idEndereco }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
                         <i class="bi bi-pencil-square"></i>
                     </a>
                 </td>

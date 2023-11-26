@@ -1,11 +1,12 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
 <h1>Alteração de Senha</h1>
 <hr>
 <form method="post">    
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual" style="color: white; background-color: #4D2B1E;">
+        <input type="password" class="form-control" id="senhaAtual" name="senhaAtual" placeholder="Digite sua senha atual" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="senhaAtual" style="color: #EDE0D4;">Senha Atual</label>
         <span class="text-danger d-none small"></span>
         <div class="form-check form-switch">
@@ -15,7 +16,7 @@
     </div>
     
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="novaSenha" name="novaSenha" placeholder="Digite sua nova senha" style="color: white; background-color: #4D2B1E;">
+        <input type="password" class="form-control" id="novaSenha" name="novaSenha" placeholder="Digite sua nova senha" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="novaSenha" style="color: #EDE0D4;">Nova Senha</label>
         <span class="text-danger d-none small"></span>
         <div class="form-check form-switch">
@@ -25,7 +26,7 @@
     </div>
 
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="confNovaSenha" name="confNovaSenha" placeholder="Digite novamente sua nova senha" style="color: white; background-color: #4D2B1E;">
+        <input type="password" class="form-control" id="confNovaSenha" name="confNovaSenha" placeholder="Digite novamente sua nova senha" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="confNovaSenha" style="color: #EDE0D4;">Confirme Sua Nova Senha</label>
         <span class="text-danger d-none small"></span>
         <div class="form-check form-switch">
@@ -35,10 +36,11 @@
     </div>
     
     <div class="mb-3">
-        <a href="/" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Alterar</button>
+        <a href="/" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Alterar</button>
     </div>
 </form>
+</div>
 
 {% if erros: %}
 <script>

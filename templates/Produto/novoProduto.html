@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: auto;">
 <h1>Cadastro de Produto</h1>
 <hr>
 <p class="lead">
@@ -9,7 +10,7 @@
 <form method="post" enctype="multipart/form-data">
     
     <div class="form-floating mb-3">
-        <select class="form-select" id="idCategoria" name="idCategoria" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <select class="form-select" id="idCategoria" name="idCategoria" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
             <option value="" disabled selected>Escolha uma categoria</option>
             {% for c in categorias: %}
             <option value="{{ c.idCategoria }}">{{ c.nome }}</option>\
@@ -20,25 +21,25 @@
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do produto" autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do produto" autofocus style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="nome" style="color: #EDE0D4;">Nome</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="preco" name="preco" placeholder="Digite o preço do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="preco" name="preco" placeholder="Digite o preço do produto." style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="preco" style="color: #EDE0D4;">Preço</label>
         <span class="text-danger d-none small"></span>
     </div>  
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição do produto." style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="descricao" style="color: #EDE0D4;">Descrição</label>
         <span class="text-danger d-none small"></span> 
     </div>  
   
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="qtdEstoque" name="qtdEstoque" placeholder="Digite a quantidade em estoque do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="qtdEstoque" name="qtdEstoque" placeholder="Digite a quantidade em estoque do produto." style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="qtdEstoque" style="color: #EDE0D4;">Quantidade em Estoque</label>
         <span class="text-danger d-none small"></span>
     </div>  
@@ -47,36 +48,37 @@
 
     <div class="form-check form-check-inline mb-3">
         <input class="form-check-input" type="radio" name="emPromocao" id="emPromocaoSim" value="sim" style="background-color: #4D2B1E; color: #EDE0D4;">
-        <label class="form-check-label" for="emPromocaoSim" style="color: #EDE0D4;">Sim</label>
+        <label class="form-check-label" for="emPromocaoSim" style="color: black;">Sim</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="emPromocao" id="emPromocaoNao" value="nao" style="background-color: #4D2B1E; color: #EDE0D4;">
-        <label class="form-check-label" for="emPromocaoNao" style="color: #EDE0D4;">Não</label>
+        <label class="form-check-label" for="emPromocaoNao" style="color: black;">Não</label>
     </div>
     
     <!-- No caso de cadastrar produto o funcionário precisa digitar a data de lançamento, já que o produto esta sendo acabado de lançar? -->
     <div class="form-floating mb-3">
-        <input type="date" class="form-control" id="dataLancamento" name="dataLancamento" placeholder="Digite a data de lançamento do produto" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="date" class="form-control" id="dataLancamento" name="dataLancamento" placeholder="Digite a data de lançamento do produto" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="dataLancamento" style="color: #EDE0D4;">Data de Lançamento</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <!-- CAMPO DA IMAGEM -->
     <div class="col-12 mb-3">
-        <label for="arquivoImagem" class="form-label" style="color: #EDE0D4;">Selecione o Arquivo de Imagem</label>
-        <input class="form-control" type="file" id="arquivoImagem" name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg" required style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="arquivoImagem" class="form-label" style="color: black;">Selecione uma Imagem Para o Produto</label> 
+        <input class="form-control" type="file" id="arquivoImagem" name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg" required style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <span class="text-danger d-none small"></span>
     </div>
     <!-- --------------- -->
     <div class="mb-3">
-        <a href="/produto/listagemprodutos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Salvar</button>
+        <a href="/produto/listagemprodutos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Salvar</button>
     </div>
 </form>
 
 <!-- LOCAL PARA MOSTRAR IMAGEM SELECIONADA -->
 <div class="col-3">
     <img id="preview" src="" class="border border-2 rounded rounded-3 p-2 w-100 d-none" />
+</div>
 </div>
 <!-- ------------------------------------- -->
 <!-- SCRIPT PARA MOSTRAR IMAGEM SELECIONADA -->

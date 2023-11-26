@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
 <h1 style="color: #281915;">Cadastro</h1>
 <hr>
 <p class="lead">
@@ -9,37 +10,37 @@
 <form method="post" enctype="multipart/form-data">
   
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo, sem abreviações" autofocus style="color: white; background-color: #4D2B1E;">
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo, sem abreviações" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="nome" style="color: #EDE0D4;">Nome Completo</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required style="color: white; background-color: #4D2B1E;">
+        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="dataNascimento" style="color: #EDE0D4;">Data de Nascimento</label>
         <span class="text-danger d-none small"></span>
     </div>  
   
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF" style="color: white; background-color: #4D2B1E;">
+        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite seu CPF" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="cpf" style="color: #EDE0D4;">CPF (Escreva nesse formato: 000.000.000-00)</label>
         <span class="text-danger d-none small"></span>
     </div>  
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" style="color: white; background-color: #4D2B1E;">
+        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="telefone" style="color: #EDE0D4;">Telefone (Escreva nesse formato: (00)00000-0000)</label>
         <span class="text-danger d-none small"></span>
     </div>   
 
     <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" style="color: white; background-color: #4D2B1E;">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="email" style="color: #EDE0D4;">E-mail</label>
         <span class="text-danger d-none small"></span>
     </div>    
   
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" style="color: white; background-color: #4D2B1E;">
+        <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="senha" style="color: #EDE0D4;">Senha</label>
         <span class="text-danger d-none small"></span>
         <div class="form-check form-switch">
@@ -49,7 +50,7 @@
     </div>
   
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="confSenha" name="confSenha" placeholder="Confirme sua senha" style="color: white; background-color: #4D2B1E;">
+        <input type="password" class="form-control" id="confSenha" name="confSenha" placeholder="Confirme sua senha" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
         <label for="confSenha" style="color: #EDE0D4;">Confirmação de Senha</label>
         <span class="text-danger d-none small"></span>
         <div class="form-check form-switch">
@@ -60,20 +61,21 @@
   
     <!-- CAMPO DA IMAGEM -->
     <div class="col-12 mb-3">
-        <label for="arquivoImagem" class="form-label" style="color: #EDE0D4;">Selecione o Arquivo de Imagem</label>
-        <input class="form-control" type="file" id="arquivoImagem" name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <label for="arquivoImagem" class="form-label" style="color: black;">Selecione uma Imagem Para sua Conta (Opcional)</label>
+        <input class="form-control" type="file" id="arquivoImagem" name="arquivoImagem" onchange="previewImage(event)" accept="image/jpeg" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <span class="text-danger d-none small"></span>
     </div>
     <!-- --------------- -->
     <div class="mb-3">
-        <a href="/" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Salvar</button>
+        <a href="/" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Salvar</button>
     </div>
 </form>
 
 <!-- LOCAL PARA MOSTRAR IMAGEM SELECIONADA -->
 <div class="col-3">
     <img id="preview" src="" class="border border-2 rounded rounded-3 p-2 w-100 d-none" />
+</div>
 </div>
 <!-- ------------------------------------- -->
 <!-- SCRIPT PARA MOSTRAR IMAGEM SELECIONADA -->

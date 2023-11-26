@@ -385,14 +385,14 @@ async def get_aceitar_pedido(
     return RedirectResponse("/pedido/listagempedidos", status_code=302)
 
 
-# @router.get("/pedidoentregue", response_class=HTMLResponse)
-# async def get_pedido_entregue(
-#     request: Request, usuario: Usuario = Depends(validar_usuario_logado)
-# ):
-#     pedido = PedidoRepo.getPedidoByStatus("entrega")
-#     PedidoRepo.atualizarStatus(pedido.idPedido, status="entregue")
-#     PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
-#     return RedirectResponse("/pedido/andamento", status.HTTP_302_FOUND)
+@router.get("/pedidoentregue", response_class=HTMLResponse)
+async def get_pedido_entregue(
+    request: Request, usuario: Usuario = Depends(validar_usuario_logado)
+):
+    pedido = PedidoRepo.getPedidoByStatus("entrega")
+    PedidoRepo.atualizarStatus(pedido.idPedido, status="entregue")
+    PedidoRepo.atualizaridFuncionario(pedido.idPedido, usuario.idUsuario)
+    return RedirectResponse("/pedido/andamento", status.HTTP_302_FOUND)
 
 
 @router.get("/motivocancelar", response_class=HTMLResponse)

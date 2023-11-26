@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: auto;">
 <h1>Editar Dados do Produto</h1>
 <hr>
 <p class="lead">
@@ -9,7 +10,7 @@
 <form method="post" enctype="multipart/form-data">
   
     <div class="form-floating mb-3">
-        <select class="form-select" id="idCategoria" name="idCategoria" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <select class="form-select" id="idCategoria" name="idCategoria" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
             <option value="" disabled>Escolha uma categoria</option>
             {% for c in categorias: %}
                 {% if c.idCategoria == produto.idCategoria %}
@@ -24,25 +25,25 @@
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="nome" name="nome" value="{{ produto.nome }}" placeholder="Digite o nome do produto" autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ produto.nome }}" placeholder="Digite o nome do produto" autofocus style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="nome" style="color: #EDE0D4;">Nome</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="preco" name="preco" value="{{ produto.preco }}" placeholder="Digite o preço do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="preco" name="preco" value="{{ produto.preco }}" placeholder="Digite o preço do produto." style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="preco" style="color: #EDE0D4;">Preço</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="descricao" name="descricao" value="{{ produto.descricao }}" placeholder="Digite a descrição do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="descricao" name="descricao" value="{{ produto.descricao }}" placeholder="Digite a descrição do produto." style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="descricao" style="color: #EDE0D4;">Descrição</label>
         <span class="text-danger d-none small"></span> 
     </div>  
   
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="qtdEstoque" name="qtdEstoque" value="{{ produto.qtdEstoque }}" placeholder="Digite a quantidade em estoque do produto." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="qtdEstoque" name="qtdEstoque" value="{{ produto.qtdEstoque }}" placeholder="Digite a quantidade em estoque do produto." style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="qtdEstoque" style="color: #EDE0D4;">Quantidade em Estoque</label>
         <span class="text-danger d-none small"></span>
     </div>  
@@ -54,27 +55,28 @@
         {% if produto.emPromocao == "sim" %} 
             checked
         {% endif %}>
-        <label class="form-check-label" for="emPromocaoSim" style="color: #EDE0D4;">Sim</label>
+        <label class="form-check-label" for="emPromocaoSim" style="color: black;">Sim</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="emPromocao" value="nao" id="emPromocaoNao" style="background-color: #4D2B1E; color: #EDE0D4;"
         {% if produto.emPromocao == "nao" %}
             checked
         {% endif %}>
-        <label class="form-check-label" for="emPromocaoNao" style="color: #EDE0D4;">Não</label>
+        <label class="form-check-label" for="emPromocaoNao" style="color: black;">Não</label>
     </div>  
 
     <div class="form-floating mb-3">
-        <input type="date" class="form-control" id="dataLancamento" name="dataLancamento" value="{{ produto.dataLancamento }}" placeholder="Digite a data de lançamento do produto" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="date" class="form-control" id="dataLancamento" name="dataLancamento" value="{{ produto.dataLancamento }}" placeholder="Digite a data de lançamento do produto" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="dataLancamento" style="color: #EDE0D4;">Data de Lançamento</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="mb-3">
-        <a href="/produto/listagemprodutos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Salvar</button>
+        <a href="/produto/listagemprodutos" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Salvar</button>
     </div>
 </form>
+</div>
 
 {% if erros and valores: %}
 <script>

@@ -23,14 +23,6 @@ async def startup_event():
     templates.env.filters["date"] = formatarData
     templates.env.filters["id_img"] = formatarIdParaImagem
 
-# Rota para mostrar a página de visualizar clientes
-@router.get("/cliente", response_class=HTMLResponse)
-async def visu_cliente(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
-    clientes = ClienteRepo.getAll()
-    return templates.TemplateResponse(
-        "Cliente/visuClientes.html", {"request": request, "clientes": clientes, "usuario": usuario} 
-    )
-
 @router.get("/novofuncionario")
 async def getNovoFuncionario(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado)

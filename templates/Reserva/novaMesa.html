@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: auto;">
 <h1>Cadastro de Mesa</h1>
 <hr>
 <p class="lead">
@@ -9,21 +10,22 @@
 <form method="post">
     
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o número correspondente à mesa." autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o número correspondente à mesa." autofocus style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="nome" style="color: #EDE0D4;">Nome da Mesa</label>
         <span class="text-danger d-none small"></span>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="assentos" name="assentos" placeholder="Digite a quantidade de assentos que há na mesa." autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="assentos" name="assentos" placeholder="Digite a quantidade de assentos que há na mesa." autofocus style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="assentos" style="color: #EDE0D4;">Quantidade de Assentos</label>
         <span class="text-danger d-none small"></span>
     </div>
   
     <div class="mb-3">
-        <a href="/mesa/listagemmesas" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+        <a href="/mesa/listagemmesas" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;" type="submit">Salvar</button>
     </div>
 </form>
+</div>
 
 {% endblock %} 

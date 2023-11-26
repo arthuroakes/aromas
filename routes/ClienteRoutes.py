@@ -42,13 +42,12 @@ async def startup_event():
     templates.env.filters["date"] = formatarData
     templates.env.filters["id_img"] = formatarIdParaImagem
 
-@router.get("/aniversario/{idCliente:int}", response_class=HTMLResponse)
-async def aniversario_cliente(request: Request, usuario: Usuario = Depends(validar_usuario_logado), idCliente: int = Path()):
+@router.get("/clientenaoencontrado", response_class=HTMLResponse)
+async def cliente_nao_encontrado(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
     qtdeItensCarrinho = 0
     if usuario and usuario.cliente:
         qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
-    aniversario = ClienteRepo.AniversarioClienteHoje(idCliente) 
-    return templates.TemplateResponse("Avulso/minhaconta.html", {"request": request, "usuario": usuario, "qtdeItensCarrinho": qtdeItensCarrinho, "aniversario": aniversario})
+    return templates.TemplateResponse("Cliente/clientenaoencontrado.html", {"request": request, "usuario": usuario, "qtdeItensCarrinho": qtdeItensCarrinho})
 
 @router.get("/carrinho", response_class=HTMLResponse)
 async def carrinho(request: Request, usuario: Usuario = Depends(validar_usuario_logado), produto_idProduto: int = None):
@@ -90,11 +89,14 @@ async def listagemCliente(
 async def getEditarCliente(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado), idUsuario: int = Path()
 ): 
+    qtdeItensCarrinho = 0
+    if usuario and usuario.cliente:
+        qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
     cliente = ClienteRepo.obterPorId(idUsuario) 
     if not cliente:
-        return templates.TemplateResponse("Cliente/clientenaoencontrado.html", {"request": request}, status_code=404)
+        return RedirectResponse("/cliente/clientenaoencontrado")
     return templates.TemplateResponse(
-        "Cliente/editarCliente.html", {"request": request, "usuario": usuario, "cliente": cliente} 
+        "Cliente/editarCliente.html", {"request": request, "usuario": usuario, "cliente": cliente, "qtdeItensCarrinho": qtdeItensCarrinho} 
     )
 
 @router.post("/modificarcliente/{idUsuario:int}")
@@ -135,8 +137,11 @@ async def get_trocar_foto(
     request: Request, usuario: Usuario = Depends(validar_usuario_logado), idUsuario: int = Path() 
 ):
     cliente = ClienteRepo.obterPorId(idUsuario)
+    qtdeItensCarrinho = 0
+    if usuario and usuario.cliente:
+        qtdeItensCarrinho = ItemRepo.getCountCartItemsFromUser(usuario.idUsuario)
     return templates.TemplateResponse(
-        "Cliente/trocarFoto.html", {"request": request, "usuario": usuario, "cliente": cliente} 
+        "Cliente/trocarFoto.html", {"request": request, "usuario": usuario, "cliente": cliente, "qtdeItensCarrinho": qtdeItensCarrinho} 
     )
 
 @router.post("/trocarfoto/{idUsuario:int}")

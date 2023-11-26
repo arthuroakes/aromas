@@ -3,7 +3,7 @@
 {% block conteudo %}
 <div class="d-flex justify-content-between align-items-center">
     <h1>Produtos Cadastrados</h1>
-    <a href="/produto/novoproduto" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Novo Produto</a> 
+    <a href="/produto/novoproduto" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Novo Produto</a> 
 </div>
 <hr>
 {% if produtos|length == 0 %}
@@ -19,7 +19,6 @@
             <th style="background-color: #4D2B1E; text-align: center;">Em Promoção</th>
             <th style="background-color: #4D2B1E; text-align: center;">Data Lançamento</th>
             <th style="background-color: #4D2B1E; text-align: center;">Ações</th>
-            <th style="background-color: #4D2B1E; text-align: center;">Editar</th>
         </tr>
     </thead>
     <tbody>
@@ -32,13 +31,11 @@
             <td class="table-warning" align="center">{{ p.emPromocao }}</td>
             <td class="table-warning" align="center">{{ p.dataLancamento }}</td>
             <td class="table-warning" align="center">
-                <a href="/produto/excluirproduto/{{ p.idProduto }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/produto/excluirproduto/{{ p.idProduto }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-trash-fill"></i> 
                 </a>
-            </td>
-            <td class="table-warning">
-                <!-- Botão para editar produto -->
-                <a href="/produto/modificarproduto/{{ p.idProduto }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+                
+                <a href="/produto/modificarproduto/{{ p.idProduto }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-pencil-square"></i>
                 </a>
             </td>

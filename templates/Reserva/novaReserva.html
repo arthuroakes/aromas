@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
 <h1>Cadastro de Reserva</h1>
 <hr>
 <p class="lead">
@@ -9,13 +10,13 @@
 <form method="post">
 
     <div class="form-floating mb-3">
-        <input type="date" class="form-control" id="dataReserva" name="dataReserva" placeholder="Escolha a data." style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="date" class="form-control" id="dataReserva" name="dataReserva" placeholder="Escolha a data." style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="dataReserva" style="color: #EDE0D4;">Escolha a Data da Reserva</label>
         <span class="text-danger d-none small"></span>
     </div> 
     
     <div class="form-floating mb-3">
-        <select class="form-control marrom_terroso_backgroud" id="horaReserva" name="horaReserva" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <select class="form-control marrom_terroso_backgroud" id="horaReserva" name="horaReserva" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
             <option value="" disabled selected>Escolha o Horário</option>
             <option value="08:00">8:00 AM</option>
             <option value="09:00">9:00 AM</option>
@@ -32,7 +33,7 @@
     </div>
 
     <div class="form-floating mb-3">
-        <select class="form-control marrom_terroso_backgroud" id="qtdPessoas" name="qtdPessoas" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <select class="form-control marrom_terroso_backgroud" id="qtdPessoas" name="qtdPessoas" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
             <option value="" disabled selected>Escolha a Quantidade de Pessoas</option>
             <option value="1">1 pessoa</option>
             <option value="2">2 pessoas</option>
@@ -48,7 +49,7 @@
     </div>
 
     <div class="form-floating mb-3">
-        <select class="form-select" id="idMesa" name="idMesa" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <select class="form-select" id="idMesa" name="idMesa" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
             <option value="" disabled selected>Escolha uma Mesa</option>
             {% for m in mesas: %} 
             <option value="{{ m.idMesa }}">{{ m.nome }}</option>\ 
@@ -59,9 +60,10 @@
     </div>
   
     <div class="mb-3">
-        <a href="/cliente/minhasreservas" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Cancelar</a>
-        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Salvar</button>
+        <a href="/cliente/minhasreservas" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Cancelar</a>
+        <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;" type="submit">Salvar</button>
     </div>
 </form>
+</div>
 
 {% endblock %} 

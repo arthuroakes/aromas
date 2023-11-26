@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
 <h1 style="color: #281915;">Login</h1>
 <hr>
 {% if not logado %}
@@ -9,13 +10,13 @@
     {% endif %}
     <form method="post">
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" value="{{ email }}" autofocus style="color: white; background-color: #4D2B1E;">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" value="{{ email }}" autofocus style="color: white; background-color: #4D2B1E; border-radius: 25px;">
             <label for="email" style="color: #EDE0D4;">E-mail</label>
             <span class="text-danger d-none small"></span>
         </div>
 
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" style="color: white; background-color: #4D2B1E;">
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" style="color: white; background-color: #4D2B1E; border-radius: 25px;">
             <label for="senha" style="color: #EDE0D4;">Senha</label>
             <span class="text-danger d-none small"></span>  
             <div class="form-check form-switch">
@@ -25,8 +26,8 @@
         </div>
         
         <div class="mb-3">
-            <a href="/" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4;">Voltar</a>
-            <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4;">Entrar</button>
+            <a href="/" class="btn me-2" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Voltar</a>
+            <button class="btn" type="submit" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Entrar</button>
         </div>
     </form>
     
@@ -34,7 +35,8 @@
     <p class="lead">Seu perfil de usuário não tem autorização de acesso à página solicitada. Caso essa permissão seja necessária, entre em contato com o administrador do sistema.</p>
     {% endif %}
     
-    <p class="lead" style="color: #281915;">Ainda não criou sua conta?<br><a href="/novocliente" class="text-decoration-none" style="color: #EDE0D4;">Clique aqui</a> para criar uma conta agora!</p>
+    <p class="lead" style="color: #281915;">Ainda não criou sua conta?<br><a href="/novocliente" class="text-decoration-none" style="color: #EDE0D4; background-color: #B08968; padding: 5px; border-radius: 25px;">Clique aqui</a> para criar uma conta agora!</p>
+</div>
 {% else %}
     <h3>Você já está logado.</h3>
 {% endif %}

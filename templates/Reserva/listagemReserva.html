@@ -2,7 +2,10 @@
 
 {% block conteudo %}
 <div class="d-flex justify-content-between align-items-center">
-    <h1>Reservas Cadastradas</h1>
+    <h1>Reservas Cadastradas</h1> 
+    {% if usuario.cliente %}
+    <a href="/reserva/novareserva" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Nova Reserva</a>
+    {% endif %} 
 </div>
 <hr>
 {% if reservas|length == 0 %}
@@ -34,13 +37,14 @@
             <td class="table-warning" align="center">{{ r.horaReserva }}</td>
             <td class="table-warning" align="center">{{ r.qtdPessoas }}</td>
             <td class="table-warning" align="center">
-                <a href="/reserva/excluirreserva/{{ r.idReserva }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/reserva/excluirreserva/{{ r.idReserva }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Excluir" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-trash"></i>
                 </a>
-
-                <a href="/reserva/modificarreserva/{{ r.idReserva }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
+            {% if usuario.cliente %}
+                <a href="/reserva/modificarreserva/{{ r.idReserva }}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Editar" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-pencil-square"></i>
                 </a>
+            {% endif %}
             </td>
         </tr>    
     {% endfor %}

@@ -133,6 +133,27 @@ async def postEditarFuncionario(
         #     raise HTTPException(status_code=401, detail="Não autorizado")
     else:
         raise HTTPException(status_code=401, detail="Não autorizado")
+    
+@router.get("/demitirfuncionario/{idUsuario:int}")
+async def get_demitir_funcionario(
+    request: Request, 
+    usuario: Usuario = Depends(validar_usuario_logado), 
+    idUsuario: int = Path() 
+):
+    funcionario = FuncionarioRepo.obterPorId(idUsuario)
+    return templates.TemplateResponse(
+        "Admin/demitirFuncionario.html", {"request": request, "usuario": usuario, "funcionario": funcionario} 
+    )
+    
+@router.post("/demitirfuncionario/{idUsuario:int}", response_class=RedirectResponse)
+async def post_demitir_funcionario( 
+    request: Request,
+    usuario: Usuario = Depends(validar_usuario_logado),
+    idUsuario: int = Path(), 
+    dataDemissao: str = Form(...)
+):
+    funcionario = FuncionarioRepo.atualizardataDemissao(idUsuario, dataDemissao)
+    return RedirectResponse("/funcionario/listagemfuncionarios", status.HTTP_302_FOUND)
 
 # Rota para excluir um produto
 @router.get("/excluirfuncionario/{idUsuario:int}", response_class=HTMLResponse) 

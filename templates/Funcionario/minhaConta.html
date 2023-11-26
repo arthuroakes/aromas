@@ -1,23 +1,25 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
 <h1>Dados Pessoais</h1>
 <hr>
 
 <div class="row">
     <div class="col-sm-8 col-lg-9">
-        <p>Nome Completo: {{ funcionario.nome }}</p> 
-        <p>E-mail: {{ funcionario.email }}</p>
-        <p>CPF: {{ funcionario.cpf }}</p>
-        <p>Telefone: {{ funcionario.telefone }}</p> 
+        <h4 style="color: #CE9468; background-color: black; border-radius: 25px; padding: 3px;">Nome Completo:</h4> <h4 style="color: #4D2B1E; margin-left: 20px;">{{ funcionario.nome }}</h4> 
+        <h4 style="color: #CE9468; background-color: black; border-radius: 25px; padding: 3px;">E-mail:</h4> <h4 style="color: #4D2B1E; margin-left: 20px;">{{ funcionario.email }}</h4>
+        <h4 style="color: #CE9468; background-color: black; border-radius: 25px; padding: 3px;">CPF:</h4> <h4 style="color: #4D2B1E; margin-left: 20px;">{{ funcionario.cpf }}</h4>
+        <h4 style="color: #CE9468; background-color: black; border-radius: 25px; padding: 3px;">Telefone:</h4> <h4 style="color: #4D2B1E; margin-left: 20px;">{{ funcionario.telefone }}</h4> 
     </div>
     <div class="col-sm-4 col-lg-3">
-        <img src="/static/img/funcionarios/{{ usuario.idUsuario|id_img }}.jpg" class="img-thumbnail" /> 
-        <a href="/funcionario/trocarfoto/{{ funcionario.idUsuario }}" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; margin-top: 10px;"> <i class="bi bi-image-fill"></i> Trocar Foto </a>
+        <img src="/static/img/funcionarios/{{ usuario.idUsuario|id_img }}.jpg" class="img-thumbnail" style="border-radius: 25px;" /> 
+        <a href="/funcionario/trocarfoto/{{ funcionario.idUsuario }}" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; margin-top: 10px; border-radius: 25px;"> <i class="bi bi-image-fill"></i> Trocar Foto </a>
     </div>
 </div>
 
 <hr>
-<a href="/funcionario/modificarfuncionario/{{ funcionario.idUsuario }}" class="btn me-3" style="background-color: #4D2B1E; color: #EDE0D4;"> Editar Dados</a>
-<a href="/alterarsenha" class="btn" style="background-color: #4D2B1E; color: #EDE0D4;">Alterar Senha</a>
+<a href="/funcionario/modificarfuncionario/{{ funcionario.idUsuario }}" class="btn me-3" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;"> Editar Dados</a>
+<a href="/alterarsenha" class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Alterar Senha</a>
+</div>
 {% endblock %}

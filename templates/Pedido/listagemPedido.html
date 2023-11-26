@@ -37,18 +37,18 @@
             <td class="table-warning" align="center">{{ pedido.tipoEntrega }}</td> 
             <td class="table-warning" align="center">
                 {% if pedido.status == 'Aguardando Aceitação' %}
-                <a href="/pedido/aceitarpedido/{{pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Aceitar" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/pedido/aceitarpedido/{{pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Aceitar" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-check-circle-fill"></i>
                 </a>
-                <a href="/pedido/negarpedido/{{pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Negar" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/pedido/negarpedido/{{pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Negar" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-x-circle-fill"></i>
                 </a>
                 {% elif pedido.status == 'Pedido Aceito' %} 
-                <a href="/pedido/entregapedido/{{pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Saiu Para Entrega" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/pedido/entregapedido/{{pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Saiu Para Entrega" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-check-circle-fill"></i>
                 </a>
                 {% endif %}
-                <a href="/pedido/detalhes/{{ pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Detalhes do Pedido" data-bs-toggle="tooltip" data-bs-placement="left">
+                <a href="/pedido/detalhes/{{ pedido.idPedido}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Detalhes do Pedido" data-bs-toggle="tooltip" data-bs-placement="left">
                     <i class="bi bi-list"></i>
                 </a>
 

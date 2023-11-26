@@ -1,6 +1,7 @@
 {% extends "Base/base.html" %}
 
 {% block conteudo %}
+<div style="background-color: #EDE0D4; padding: 20px; border-radius: 20px; max-width: 1000px; margin: 0 auto;">
 <h1>Editar Dados</h1>
 <hr>
 <p class="lead">
@@ -8,54 +9,55 @@
 <form method="post">
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="nome" name="nome" value="{{ funcionario.nome }}" placeholder="Digite seu nome completo, sem abreviações" autofocus style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ funcionario.nome }}" placeholder="Digite seu nome completo, sem abreviações" autofocus style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="nome" style="color: #EDE0D4;">Nome Completo</label>
         <span class="text-danger d-none small"></span>
     </div>
     
     <div class="form-floating mb-3">
-        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" value="{{ funcionario.dataNascimento }}" placeholder="Digite sua data de nascimento" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" value="{{ funcionario.dataNascimento }}" placeholder="Digite sua data de nascimento" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="dataNascimento" style="color: #EDE0D4;">Data de Nascimento</label>
         <span class="text-danger d-none small"></span>
     </div>  
       
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="cpf" name="cpf" value="{{ funcionario.cpf }}" placeholder="Digite seu CPF" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="cpf" name="cpf" value="{{ funcionario.cpf }}" placeholder="Digite seu CPF" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="cpf" style="color: #EDE0D4;">CPF</label>
         <span class="text-danger d-none small"></span>
     </div>  
     
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="telefone" name="telefone" value="{{ funcionario.telefone }}" placeholder="Telefone" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="telefone" name="telefone" value="{{ funcionario.telefone }}" placeholder="Telefone" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="telefone" style="color: #EDE0D4;">Telefone</label>
         <span class="text-danger d-none small"></span>
     </div>   
     
     <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="email" name="email" value="{{ funcionario.email }}" placeholder="Digite seu e-mail" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="email" class="form-control" id="email" name="email" value="{{ funcionario.email }}" placeholder="Digite seu e-mail" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="email" style="color: #EDE0D4;">E-mail</label>
         <span class="text-danger d-none small"></span>
     </div>
     
     {% if usuario.admin %}
     <div class="form-floating mb-3">
-        <input type="date" class="form-control" id="dataAdmissao" name="dataAdmissao" value="{{ funcionario.dataAdmissao }}" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="date" class="form-control" id="dataAdmissao" name="dataAdmissao" value="{{ funcionario.dataAdmissao }}" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="dataAdmissao" style="color: #EDE0D4;">Data de Admissão</label>
         <span class="text-danger d-none small"></span>
     </div>  
     
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="salario" name="salario" value="{{ funcionario.salario }}" style="background-color: #4D2B1E; color: #EDE0D4;">
+        <input type="text" class="form-control" id="salario" name="salario" value="{{ funcionario.salario }}" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">
         <label for="salario" style="color: #EDE0D4;">Salário</label>
         <span class="text-danger d-none small"></span>
     </div>
     {% endif %}    
 
     <div class="mb-3">
-        <a href="{% if usuario.admin %} /funcionario/listagemfuncionarios {% else %} /funcionario/minhaconta {% endif %}" class="btn me-2" style="color: #EDE0D4; background-color: #4D2B1E">Cancelar</a>
-        <button class="btn" style="color: #EDE0D4; background-color: #4D2B1E" type="submit">Salvar Alteraçoes</button>
+        <a href="{% if usuario.admin %} /funcionario/listagemfuncionarios {% else %} /funcionario/minhaconta {% endif %}" class="btn me-2" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;">Cancelar</a>
+        <button class="btn" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" type="submit">Salvar Alteraçoes</button>
     </div>
 </form>
+</div>
 {% if erros and valores: %}
 <script>
     const validationErrors = {{ erros|tojson }};
