@@ -84,6 +84,11 @@
                       <i class="bi bi-pen-fill"></i> Alterar Senha
                     </a>
                 </li>
+                <li>
+                  <a href="/chat/chatcliente" class="dropdown-item {% if pagina_atual == '/chat/chatcliente' %}active{% endif %}">
+                    <i class="bi bi-chat-dots-fill"></i> Chat
+                  </a>
+                </li>
             </ul>
             </div>
             {% endif %} 
@@ -135,7 +140,12 @@
                   <a href="/alterarsenha" class="dropdown-item {% if pagina_atual == '/alterarsenha' %}active{% endif %}">
                     <i class="bi bi-pen-fill"></i> Alterar Senha
                   </a>
-                </li>                
+                </li>   
+                <li>
+                  <a href="/chat/chatfuncionario" class="dropdown-item {% if pagina_atual == '/chat/chatfuncionario' %}active{% endif %}">
+                    <i class="bi bi-chat-dots-fill"></i> Chat
+                  </a>
+                </li>             
               </ul>
             </div>
             {% endif %}

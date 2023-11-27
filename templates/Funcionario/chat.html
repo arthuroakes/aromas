@@ -1,0 +1,75 @@
+{% extends "Base/base.html" %}
+
+{% block conteudo %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Lista de Conversas -->
+        <div class="col-md-4">
+            <div class="list-group" id="conversas-lista">
+                <a href="#" class="list-group-item list-group-item-action conversa-item active" data-conversa-id="1">
+                    <img src="/static/img/clientes/0015.jpg" alt="Foto Cliente 1" class="rounded-circle" width="30" height="30">
+                    Conversa 1
+                </a>
+                <a href="#" class="list-group-item list-group-item-action conversa-item" data-conversa-id="2">
+                    <img src="/caminho/para/foto_cliente2.jpg" alt="Foto Cliente 2" class="rounded-circle" width="30" height="30">
+                    Conversa 2
+                </a>
+                <a href="#" class="list-group-item list-group-item-action conversa-item" data-conversa-id="3">
+                    <img src="/caminho/para/foto_cliente3.jpg" alt="Foto Cliente 3" class="rounded-circle" width="30" height="30">
+                    Conversa 3
+                </a>
+                <!-- Adicione mais conversas conforme necessário -->
+            </div>
+        </div>
+
+        <!-- Detalhes da Conversa Selecionada -->
+        <div class="col-md-8" id="detalhes-conversa">
+            <div class="card">
+                <div class="card-header">
+                    Detalhes da Conversa
+                </div>
+                <div class="card-body">
+                    <div class="messages-container">
+                        <!-- Aqui serão exibidas as mensagens da conversa selecionada -->
+                        <!-- Adicione a lógica necessária para exibir as mensagens dinamicamente -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Digite sua mensagem">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Manipular cliques nas conversas
+        $('.conversa-item').on('click', function () {
+            // Remover a classe 'active' de todos os itens
+            $('.conversa-item').removeClass('active');
+            
+            // Adicionar a classe 'active' ao item clicado
+            $(this).addClass('active');
+
+            // Atualizar o conteúdo da conversa selecionada (lógica a ser implementada)
+            var conversaId = $(this).data('conversa-id');
+            atualizarDetalhesConversa(conversaId);
+        });
+
+        // Função para atualizar os detalhes da conversa
+        function atualizarDetalhesConversa(conversaId) {
+            // Lógica para carregar e exibir as mensagens da conversa
+            // Pode ser feita por meio de uma requisição AJAX ou outra abordagem
+            // Substitua este comentário pela sua implementação
+            console.log('Detalhes da conversa atualizados para a conversa:', conversaId);
+        }
+    });
+</script>
+{% endblock %}

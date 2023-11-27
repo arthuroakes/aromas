@@ -22,6 +22,7 @@ from routes.PedidoRoutes import router as PedidoRoutes
 from routes.ReservaRoutes import router as ReservaRoutes
 from routes.MesaRoutes import router as MesaRoutes
 from routes.EnderecoRoutes import router as EnderecoRoutes
+from routes.ChatRoutes import router as ChatRoutes
 
 CategoriaRepo.createTable()
 ChatRepo.createTable()
@@ -50,7 +51,8 @@ app.include_router(CategoriaRoutes)
 app.include_router(PedidoRoutes)
 app.include_router(ReservaRoutes)
 app.include_router(MesaRoutes)
-app.include_router(EnderecoRoutes) 
+app.include_router(EnderecoRoutes)
+app.include_router(ChatRoutes) 
 
 if CategoriaRepo.obterQtde() == 0:
   CategoriaRepo.inserirCategoriasBase()

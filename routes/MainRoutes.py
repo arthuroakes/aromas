@@ -124,10 +124,6 @@ async def meuspedidos(request: Request, usuario: Usuario = Depends(validar_usuar
     return templates.TemplateResponse("Avulso/meuspedidos.html", {"request": request, "usuario": usuario, "qtdeItensCarrinho": qtdeItensCarrinho})
 
 
-@router.get("/chat", response_class=HTMLResponse)
-async def chat(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
-    return templates.TemplateResponse("Avulso/chat.html", {"request": request, "usuario": usuario}) 
-
 @router.get("/notfound", response_class=HTMLResponse)
 async def notfound(request: Request, usuario: Usuario = Depends(validar_usuario_logado)):
     return templates.TemplateResponse("Main/notfound.html", {"request": request, "usuario": usuario}) 
