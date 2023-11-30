@@ -33,7 +33,7 @@
             </td>
             <td class="table-warning" align="center">{{item.valorUnitario}}</td>
             <td class="table-warning" align="center">
-              <a href="/pedido/excluiritem/{{item.idProduto}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
+              <a href="/pedido/excluiritem/{{item.idProduto}}" class="btn btn-sm" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Excluir" data-bs-toggle="tooltip" data-bs-placement="left">
                 <i class="bi bi-trash-fill"></i>
               </a>
             </td>
@@ -41,10 +41,10 @@
       {% endfor %}
       </tbody>
       </table>
-        <a href="/produtos" class="btn" style="color: #EDE0D4; background-color: #4D2B1E" title="Comprar mais" data-bs-toggle="tooltip" data-bs-placement="left">
+        <a href="/produtos" class="btn" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Comprar mais" data-bs-toggle="tooltip" data-bs-placement="left">
           <i class="bi bi-arrow-left"></i> Continuar comprando
         </a>
-        <a href="/pedido/aquisicao" class="btn float-end" style="color: #EDE0D4; background-color: #4D2B1E" title="Finalizar Pedido" data-bs-toggle="tooltip" data-bs-placement="left">
+        <a href="/pedido/aquisicao" class="btn float-end" style="color: #EDE0D4; background-color: #4D2B1E; border-radius: 25px;" title="Finalizar Pedido" data-bs-toggle="tooltip" data-bs-placement="left">
           <i class="bi bi-cart-check-fill"></i> Finalizar Pedido
         </a>
   {% else %}

@@ -8,7 +8,7 @@
 <div class="row">
     {% if enderecos|length == 0 %}
     <div class="col-6 text-center">
-        <a href="/endereco/novoendereco" class="btn btn-lg" style="background-color: #4D2B1E; color: #EDE0D4;">Adicionar um endereço</a>
+        <a href="/endereco/novoendereco" class="btn btn-lg" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;">Adicionar um endereço</a>
     </div>
     {% else %}
     {% for e in enderecos: %}
@@ -22,7 +22,7 @@
                         {{ e.cidade }} - {{ e.uf }}<br>
                         {{ e.cep }}
                     </p>
-                    <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4;" type="submit">Este Endereço</button>
+                    <button class="btn" style="background-color: #4D2B1E; color: #EDE0D4; border-radius: 25px;" type="submit">Este Endereço</button>
                 </form>
             </div>
         </div>

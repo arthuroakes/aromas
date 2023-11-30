@@ -118,13 +118,15 @@ async def post_nova_reserva(
                 "valores": valores,
             },
         )
+        
+    data_reserva_formatada = formatarData(dataReserva.strftime("%Y-%m-%d"))
     
     ReservaRepo.insert(
         Reserva(
             idReserva=0,
             idCliente=usuario.idUsuario,
             idMesa=idMesa,
-            dataReserva=dataReserva,
+            dataReserva=data_reserva_formatada,
             horaReserva=horaReserva,
             qtdPessoas=qtdPessoas,
         )
