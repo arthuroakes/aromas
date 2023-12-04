@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List
 from util.Database import Database
 from models.Reserva import Reserva
@@ -12,7 +13,7 @@ class ReservaRepo:
             idReserva INTEGER PRIMARY KEY AUTOINCREMENT,
             idCliente INTEGER NOT NULL,
             idMesa INTEGER NOT NULL,
-            dataHoraCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+            dataHoraCadastro DATETIME,
             dataReserva DATE NOT NULL,
             horaReserva INTEGER NOT NULL, 
             qtdPessoas INTEGER NOT NULL,
@@ -28,10 +29,15 @@ class ReservaRepo:
 
   @classmethod
   def insert(cls, reserva: Reserva) -> Reserva:
+    # Obtém a data e hora atuais
+    now = datetime.now()
+    # Formata a data e hora para o formato desejado
+    data_hora_cadastro = now.strftime("Data: %d/%m/%Y Hora: %H:%M:%S")
+    
     sql = "INSERT INTO reserva (idCliente, idMesa, dataHoraCadastro, dataReserva, horaReserva, qtdPessoas) VALUES (?, ?, ?, ?, ?, ?)"
     conn = Database.createConnection()
     cursor = conn.cursor()
-    result = cursor.execute(sql, (reserva.idCliente, reserva.idMesa,reserva.dataHoraCadastro, reserva.dataReserva, reserva.horaReserva, reserva.qtdPessoas))
+    result = cursor.execute(sql, (reserva.idCliente, reserva.idMesa, data_hora_cadastro, reserva.dataReserva, reserva.horaReserva, reserva.qtdPessoas))
     if (result.rowcount > 0):
       conn.commit()
       conn.close()
